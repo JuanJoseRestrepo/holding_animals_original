@@ -155,7 +155,74 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 		
 		return inicialDate;
 	}
-
 	
+	public void ordenarPorIdPet() {
+		
+		for(int i = 0; i < pets.size();i++) {
+			Pet menor = pets.get(i);
+			int indice = i;
+			for(int j = i +1; i < pets.size()-1;j++) {
+				if(pets.get(j).compare(pets.get(j), pets.get(j+1)) < 0) {
+					menor = pets.get(j);
+					indice = j;
+				}
+				
+			}
+			Pet temp = pets.get(i);
+			pets.set(i,menor);
+			pets.set(indice, temp);
+			
+		}
+		
+	}
+	
+	public void ordenarPorNombres() {
+		for(int i = 1; i < pets.size();i++) {
+			for(int j = i; j > 0 && pets.get(j-1).compareTo(pets.get(j)) > 0;j--) {
+				Pet petsito = pets.get(j);
+				pets.set(j, pets.get(j-1));
+				pets.set(j-1, petsito);
+			}
+		}
+	}
+	
+	public void ordenarPorGenero() {
+		
+		for(int i = 0; i < pets.size();i++) {
+			
+			for(int j = 0; j < pets.size()-1-i;j++) {
+				if(pets.get(j).compareGender(pets.get(j),pets.get(j+1)) > 0) {
+					
+					Pet pets1 = pets.get(j);
+					pets.set(j, pets.get(j+1));
+					pets.set(j+1,pets1);		
+				}
+			}	
+		}	
+	}
+	
+	public void ordenarPorTipoDeAnimalElPet() {
+		
+		for(int i = 1; i < pets.size();i++) {
+			for(int j = i; j > 0 && pets.get(j-1).compareTypeOfPet(pets.get(j)) > 0;j--) {
+				Pet petsito = pets.get(j);
+				pets.set(j, pets.get(j-1));
+				pets.set(j-1, petsito);
+			}
+		}
+		
+	}
+	
+	public void ordenarPorFecha() {
+		
+		for(int i = 1; i < pets.size();i++) {
+			for(int j = i; j > 0 && pets.get(j-1).compareBornDayPet(pets.get(j)) > 0;j--) {
+				Pet petsito = pets.get(j);
+				pets.set(j, pets.get(j-1));
+				pets.set(j-1, petsito);
+			}
+		}
+		
+	}
 	
 }

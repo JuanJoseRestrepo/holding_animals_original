@@ -302,5 +302,87 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		return inicialDate;
 	}
 	
+	public void ordenarPorIdOwner() {
+		
+		for(int i = 0; i < owners.size();i++) {
+			Owner menor = owners.get(i);
+			int indice = i;
+			for(int j = i +1; j < owners.size()-1;j++) {
+				if(owners.get(j).compareTo(menor) < 0) {
+					
+					menor = owners.get(j);
+					indice = j;
+					
+				}
+			}
+			Owner temp = owners.get(i);
+			owners.set(i, menor);
+			owners.set(indice,temp);
+			
+		}
+		
+	}
+	
+	public void ordenarPorNombrePrimero() {
+		for(int i = 1; i < owners.size();i++) {
+			
+			for(int j = i; j > 0 && owners.get(j-1).compare(owners.get(j-1), owners.get(j)) > 0;j--) {
+				Owner own = owners.get(j-1);
+				owners.set(j, own);
+				owners.set(j-1, owners.get(j));
+				
+			}
+			
+		}
+	}
+	
+	public void ordenarPorSegundosNombres() {
+		
+		for(int i = 0; i < owners.size();i++) {
+			
+			for(int j = 0; j < owners.size()-1-i;j++) {
+				if(owners.get(j).compareToSecondNames(owners.get(j),owners.get(j+1)) > 0) {
+					Owner own = owners.get(j);
+					owners.set(j, owners.get(j+1));
+					owners.set(j+1,own);
+				}
+				
+			}
+			
+		}	
+	}
+	
+	public void ordenarPorTipoDeAnimal() {
+		
+		for(int i = 1; i < owners.size();i++) {
+			
+			for(int j = i; j > 0 && owners.get(j-1).compareToTypeOfAnimalsPrefer(owners.get(j)) > 0;j--) {
+				Owner own = owners.get(j-1);
+				owners.set(j-1, owners.get(j));
+				owners.set(j, own);
+				
+				
+			}
+			
+		}
+		
+		
+	}
+	
+	public void ordenarPorFechas() {
+		
+		for(int i = 0; i < owners.size();i++) {
+			for(int j = 0; j < owners.size()-1-i;j++) {
+				if(owners.get(j).compareToBornDay(owners.get(j+1)) > 0) {
+					Owner own = owners.get(j);
+					owners.set(j,owners.get(j+1));
+					owners.set(j+1, own);
+					
+				}
+			}
+		}
+		
+	}
+	
 			
 }//finalDeLaClase

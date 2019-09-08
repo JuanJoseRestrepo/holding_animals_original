@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import model.Club;
+import model.*;
 
 class Holding {
 	
