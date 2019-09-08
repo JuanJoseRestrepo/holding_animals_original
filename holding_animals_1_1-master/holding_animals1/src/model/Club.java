@@ -123,12 +123,13 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		boolean t = false;
 		
 		for(int i = 0; i < owners.size() && !t;i++) {
-			if(idOwner != owners.get(i).getIdOwner()) {
-			msj += "Se agrego el cliente";
+			if(!(owners.get(i).getIdOwner()).equals(idOwner)) {
+			msj += "No se agrego el cliente";
 			owners.add(new Owner(idOwner,ownerNames,ownerSecondNames,typeOfAnimalsPrefer,bornDay));
-			t = true;
 			}else {
-				msj += "No se encontro ninguno distinto";
+				msj += "Se encontro";
+				owners.add(new Owner(idOwner,ownerNames,ownerSecondNames,typeOfAnimalsPrefer,bornDay));
+				t = true;
 			}
 		}
 		return msj;
@@ -188,16 +189,19 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	/**
 	 * 
 	 */
-	public void searchForTheOwner(String idClient, String idPet,String petName, String gender,String typeOfPet,String bornPetDay) {
-		
+	public String searchForTheOwner(String idClient, String idPet,String petName, String gender,String typeOfPet,String bornPetDay) {
+		String msj = " ";
 		for (int i = 0; i < owners.size(); i++) {
-			if(idClient == owners.get(i).getIdOwner()) {
+			if(!owners.get(i).getIdOwner().equals(idClient)) {
+				msj = "Se encontro al dueño";
 				owners.get(i).addAnimals(idPet, petName, gender, typeOfPet, bornPetDay);
 				//saveObjectsInFileOwners();
+			}else {
+				msj = "No existe el dueño";
 			}
 			
 		}
-		
+		return msj;
 	}
 	
 	/**
@@ -381,6 +385,20 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 				}
 			}
 		}
+		
+	}
+	
+	public String mostrarInfoOrdenado() {
+		String msj = "";
+		for(int j = 0; j < owners.size();j++) {
+			msj += "\n" + owners.get(j).toString();
+		}
+	return msj;
+	}
+	
+	public int compararPorTamaño(Club o1,Club o2) {
+		
+		return o1.getOwners().size() - o2.getOwners().size();
 		
 	}
 	

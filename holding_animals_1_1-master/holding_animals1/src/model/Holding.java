@@ -35,6 +35,17 @@ public class Holding implements Serializable{
 	
 	}
 	
+	
+	public ArrayList<Club> getClubs() {
+		return clubs;
+	}
+
+
+	public void setClubs(ArrayList<Club> clubs) {
+		this.clubs = clubs;
+	}
+
+
 	public void onlyOneTimeLoadOwners() {
 		
 		for(int i = 0; i < clubs.size();i++) {
@@ -59,13 +70,19 @@ public class Holding implements Serializable{
 }
 
 	
-	public void findClubWithClubAndOwnerAndPet(String idClubs,String idClien,String idPet,String petName, String gender,String typeOfPet,String bornPetDay){
+	public String findClubWithClubAndOwnerAndPet(String idClubs,String idClien,String idPet,String petName, String gender,String typeOfPet,String bornPetDay){
+		String msj = "";
+		
 		for(int i = 0; i < clubs.size();i++) {
 			if(idClubs.equals(clubs.get(i).getIdClub())) {
+				msj = "Se encontro el club";
 				clubs.get(i).searchForTheOwner(idClubs,idPet, petName, gender, typeOfPet, bornPetDay);
 				saveClubs();
+			}else {
+				msj = "No se encontro al club";
 			}
 		}
+		return msj;
 	}
 	
 	public String findClubForOwner(String idClub, String idOwner,String ownerNames, String ownerSecondNames,String typeOfAnimalsPrefer,String bornDay) {
@@ -206,9 +223,9 @@ public class Holding implements Serializable{
 				Club temp = clubs.get(j);
 				clubs.set(j,clubs.get(j-1));
 				clubs.set(j-1,temp);
-			}
+			} 
 				
-		}
+		} 
 		
 	}
 	
@@ -279,9 +296,9 @@ public void loadOwner(){
 			String br1 = br.readLine();
 			String[] b = br1.split(",");
 			miClub.getOwners().add(new Owner(b[0],b[1],b[2],b[3],b[4]));
-			saveClubs();
 			j++;
 		} while (j<1);
+		saveClubs();
 } 
 
 	br.close();
@@ -365,9 +382,9 @@ public void loadPet(){
 				String a = br.readLine();
 				String[] b = a.split(",");
 				owner.getPets().add(new Pet(b[0],b[1],b[2],b[3],b[4]));
-				saveClubs();
 				j++; 
-			} while (j<1);
+			} while (j<2);
+			saveClubs();
 	}
 
 	}
@@ -478,8 +495,31 @@ public Date formatTheDateOfThis(String dateOfThis) {
 	
 	
 	return inicialDate;
+} 
+
+public String mostrarInfo(String idCLub) {
+	String msj = " ";
+	for(int i = 0; i < clubs.size();i++) {
+		if(idCLub.equals(clubs.get(i))){
+			msj += " " +clubs.get(i).mostrarInfoOrdenado();
+		}
+		
+	}
+	
+	return msj;
 }
 
+public void ordenarClubesPorNumeroDeDueños() {
+	
+	for(int i = 1; i < clubs.size();i++) {
+		for(int j = i; j > 0 && clubs.get(j-1).compararPorTamaño(clubs.get(j-1),clubs.get(j)) > 0; j--) {
+			Club temp = clubs.get(j);
+			clubs.set(j,clubs.get(j-1));
+			clubs.set(j-1,temp);
+		}
+			
+	} 
+}
 		
 		
 }//Final

@@ -85,13 +85,18 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 		this.pets = pets;
 	}
 	
-	public void addAnimals(String idPet,String petName, String gender,String typeOfPet,String bornPetDay) {
-		
+	public String addAnimals(String idPet,String petName, String gender,String typeOfPet,String bornPetDay) {
+		String msj = " ";
 		for(int i = 0; i < pets.size();i++) {
-			if(petName != pets.get(i).getPetName()) {
+			if(!pets.get(i).getPetName().equals(petName)) {
+	          msj = "No puede haber iguales";
+	          pets.add(new Pet(idPet,petName,gender,typeOfPet,bornPetDay));
+			}else {
+				msj = "Se agrego el pet";
 				pets.add(new Pet(idPet,petName,gender,typeOfPet,bornPetDay));
 			}
 		}
+		return msj;
 	}
 	
 
