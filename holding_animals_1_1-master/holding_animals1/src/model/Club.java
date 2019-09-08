@@ -21,7 +21,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public final static String DATA = "\"Ownersit.dat\"";
+	public final static String DATA = "\"Ownersit\"";
 	//relaciones
 	private ArrayList<Owner> owners;
 	
@@ -41,7 +41,8 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		this.creationDate = creationDate;
 		this.typeOfAnimals = typeOfAnimals;
 		owners = new ArrayList<Owner>();
-	
+		serializableOwner();
+		deserialazeOwner();
 	}
 	
 	/**
@@ -117,91 +118,22 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	/**
 	 * 
 	 */
-	public String addOwners(String idOwner, String ownerNames, String ownerSecondNames,String typeOfAnimalsPrefer,String bornDay) {
-		String msj = " ";
-		
-		boolean t = false;
-		
-		for(int i = 0; i < owners.size() && !t;i++) {
-			if(!(owners.get(i).getIdOwner()).equals(idOwner)) {
-			msj += "No se agrego el cliente";
-			owners.add(new Owner(idOwner,ownerNames,ownerSecondNames,typeOfAnimalsPrefer,bornDay));
-			}else {
-				msj += "Se encontro";
-				owners.add(new Owner(idOwner,ownerNames,ownerSecondNames,typeOfAnimalsPrefer,bornDay));
-				t = true;
-			}
-		}
-		return msj;
+	public void addOwners(String idOwner, String ownerNames, String ownerSecondNames,String typeOfAnimalsPrefer,String bornDay) {
+
+		owners.add(new Owner(idOwner,ownerNames,ownerSecondNames,typeOfAnimalsPrefer,bornDay));
+		serializableOwner();
 	}
 	
-	/**
-	 * 
-	 
-	public void saveObjectsInFileOwners() {
-		File fl = new File(DATA);
-		try {
-		FileOutputStream file = new FileOutputStream(fl.getAbsolutePath());
-		ObjectOutputStream ob =  new ObjectOutputStream(file);
-		if(fl.exists()) {
-			
-			ob.writeObject(owners); 
-			ob.close();
-		}else {
-			
-				ob.writeObject(owners);
-				ob.close();
-			  }
-		}catch(IOException e) {
-			
-		}
-	}
-	
-	/**
-	 * 
-	 
-	public void loadObjectsOwnerAndPets() {
-		File fl = new File(DATA);
-		if(fl.exists()){  
-			try {
-				FileInputStream fr = new FileInputStream(fl.getAbsoluteFile());
-				ObjectInputStream ob = new ObjectInputStream(fr);
-				
-				owners = (ArrayList<Owner>) ob.readObject();
-				
-				ob.close(); 
-				fr.close();
-			}catch(IOException e) {
-				
-				e.getCause();
-				
-			}catch(ClassNotFoundException e) {
-				
-				e.getCause();
-				
-			}
-		}else {
-			owners = new ArrayList<Owner>();
-		}
-		
-}
-	
+
 	/**
 	 * 
 	 */
-	public String searchForTheOwner(String idClient, String idPet,String petName, String gender,String typeOfPet,String bornPetDay) {
-		String msj = " ";
-		for (int i = 0; i < owners.size(); i++) {
+	public void searchForTheOwner(String idClient, String idPet,String petName, String gender,String typeOfPet,String bornPetDay) {
+		for (int i = 0; i < owners.size(); i++){ 
 			if(!owners.get(i).getIdOwner().equals(idClient)) {
-				msj = "Se encontro al dueño";
 				owners.get(i).addAnimals(idPet, petName, gender, typeOfPet, bornPetDay);
-				//saveObjectsInFileOwners();
-			}else {
-				msj = "No existe el dueño";
-			}
-			
+			}	
 		}
-		return msj;
 	}
 	
 	/**
@@ -399,6 +331,45 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	public int compararPorTamaño(Club o1,Club o2) {
 		
 		return o1.getOwners().size() - o2.getOwners().size();
+		
+	}
+	
+	public void deserialazeOwner() {
+		
+	 File fl = new File("Clubsito.data");
+	 ArrayList<Owner> ownersitos;
+	 try {
+		 FileInputStream fls = new FileInputStream(fl);
+		 ObjectInputStream obs = new ObjectInputStream(fls);
+		 
+		 ownersitos = (ArrayList<Owner>) obs.readObject();
+		 owners = ownersitos;
+		 
+	 }catch(IOException e) {
+		 e.getCause();
+	 } catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
+		
+	}
+	
+	
+	public void serializableOwner() {
+		
+		File fl = new File("Clubsito.data");
+		
+		try {
+			FileOutputStream flo = new FileOutputStream(fl);
+			ObjectOutputStream ob = new ObjectOutputStream(flo);
+			
+			ob.writeObject(owners);
+			ob.close();
+			
+		}catch(IOException e) {
+			e.getCause();
+		}
 		
 	}
 	

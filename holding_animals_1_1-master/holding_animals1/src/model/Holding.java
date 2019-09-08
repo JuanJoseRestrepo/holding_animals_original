@@ -28,7 +28,6 @@ public class Holding implements Serializable{
 	public Holding(String archives) {
 		this.archives = archives;
 		clubs = loadFileMocaForClub();
-		loadClubs();
 		onlyOneTimeLoadOwners();
 		onlyOneTimeLoadPets();
 		
@@ -70,34 +69,26 @@ public class Holding implements Serializable{
 }
 
 	
-	public String findClubWithClubAndOwnerAndPet(String idClubs,String idClien,String idPet,String petName, String gender,String typeOfPet,String bornPetDay){
-		String msj = "";
+	public void findClubWithClubAndOwnerAndPet(String idClubs,String idClien,String idPet,String petName, String gender,String typeOfPet,String bornPetDay){
+
 		
 		for(int i = 0; i < clubs.size();i++) {
 			if(idClubs.equals(clubs.get(i).getIdClub())) {
-				msj = "Se encontro el club";
 				clubs.get(i).searchForTheOwner(idClubs,idPet, petName, gender, typeOfPet, bornPetDay);
-				saveClubs();
-			}else {
-				msj = "No se encontro al club";
 			}
 		}
-		return msj;
 	}
+
 	
-	public String findClubForOwner(String idClub, String idOwner,String ownerNames, String ownerSecondNames,String typeOfAnimalsPrefer,String bornDay) {
-		String msj = "";
+	public void findClubForOwner(String idClub, String idOwner,String ownerNames, String ownerSecondNames,String typeOfAnimalsPrefer,String bornDay) {
+
 		
 		for (int i = 0; i < clubs.size(); i++) {
-			if(idClub.equals(clubs.get(i).getIdClub())) {
-				msj += "Se encontro el club y se agrego";
+			if(clubs.get(i).getIdClub().equals(idClub)) {
 				clubs.get(i).addOwners(idOwner,ownerNames,ownerSecondNames,typeOfAnimalsPrefer,bornDay);
-				saveClubs();
+				}
 			}	
 		}
-		
-		return msj;
-	}
 	
 	public void registerClubInTheSystem(String idClub,String nameClub,String creationDate,String typeOfAnimals) {
 		
@@ -295,10 +286,9 @@ public void loadOwner(){
 		do {
 			String br1 = br.readLine();
 			String[] b = br1.split(",");
-			miClub.getOwners().add(new Owner(b[0],b[1],b[2],b[3],b[4]));
+			miClub.addOwners(b[0],b[1],b[2],b[3],b[4]);
 			j++;
-		} while (j<1);
-		saveClubs();
+		} while (j<2);
 } 
 
 	br.close();
@@ -312,60 +302,6 @@ public void loadOwner(){
 	
 }
 
-
-public void saveClubs() {
-	File fl = new File("Club.dat");
-	
-		try {
-			FileOutputStream fos = new FileOutputStream(fl);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			
-			for(int i = 0; i < clubs.size();i++) {
-			oos.write(i);
-			oos.writeObject(clubs.get(i).getOwners());
-			}
-			oos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	
-		
-}
-
-
-
-
-//
-public void loadClubs() {
-	File fl = new File("Club.dat");
-	
-	if(fl.exists()){  
-		try {
-			FileInputStream fr = new FileInputStream(fl.getAbsoluteFile());
-			ObjectInputStream ob = new ObjectInputStream(fr);
-			for(int i = 0; i < clubs.size();i++) {
-				int j = ob.read();
-				ArrayList<Owner> own= (ArrayList<Owner>) ob.readObject();
-				clubs.get(j).setOwners(own);
-			}
-			ob.close(); 
-			fr.close();
-		}catch(IOException e) {
-			
-			e.getCause();
-			
-		}catch(ClassNotFoundException e) {
-			
-			e.getCause();
-			
-		}
-	}
-	
-}
 
 public void loadPet(){
 
@@ -383,8 +319,8 @@ public void loadPet(){
 				String[] b = a.split(",");
 				owner.getPets().add(new Pet(b[0],b[1],b[2],b[3],b[4]));
 				j++; 
-			} while (j<2);
-			saveClubs();
+			} while (j<1);
+		
 	}
 
 	}
@@ -398,27 +334,6 @@ public void loadPet(){
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	
-	
-	System.out.println("---------PRIMERO----------");
-	for(Club clubsitos:clubs) {
-		System.out.println("------------------------");
-		System.out.println(clubsitos.toString());
-		System.out.println("------------------------");
-		for(Owner owner: clubsitos.getOwners()) {
-			System.out.println("////////////////////////////");
-			System.out.println(owner.toString());
-			System.out.println("////////////////////////////");
-			for(Pet pet: owner.getPets()) {
-				System.out.println("*************************");
-				System.out.println(pet.toString());
-				System.out.println("*************************");
-				
-			}
-		}
-	}
-	System.out.println("---------FINAL----------");
-	
 			
 }
 		

@@ -101,7 +101,7 @@ public class Main {
 				System.out.println("Digite su fecha de nacimiento" + "//" + "En formato YYYY/MM/DD");
 				String bornD = reader.nextLine();
 				
-				System.out.println(system.findClubForOwner(idnameClub, idCli, Cliname, CliSecond, typeOfPet, bornD));
+				system.findClubForOwner(idnameClub, idCli, Cliname, CliSecond, typeOfPet, bornD);
 			
 			}else if(inputUser == 3) {
 				System.out.println("Digite  el id del Club que va agregar la mascota");
@@ -135,7 +135,7 @@ public class Main {
 				System.out.println("Digite el dia de cumpleaños de la mascota" +"||" + "En formato de:" + "||" + "YYYY/MM/DD");
 				String datePe = reader.nextLine();
 				
-				System.out.println(system.findClubWithClubAndOwnerAndPet(idPetClub, idDelDueño, idPetsito, idName, gender, typeOfPet3, datePe));
+				system.findClubWithClubAndOwnerAndPet(idPetClub, idDelDueño, idPetsito, idName, gender, typeOfPet3, datePe);
 				
 			}else if(inputUser == 4) {
 				
