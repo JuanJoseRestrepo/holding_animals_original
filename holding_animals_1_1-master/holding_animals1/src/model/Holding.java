@@ -62,9 +62,9 @@ public class Holding implements Serializable{
 			for(Owner own: clubs.get(i).getOwners()) {
 				if(own.getPets().isEmpty()) {
 					loadPet();
-				}
+			}
 	}	
-	}
+}
 		
 }
 
@@ -281,18 +281,19 @@ public void loadOwner(){
 	try {
 	FileReader fi = new FileReader("Ownersitos.csv");
 	BufferedReader br = new BufferedReader(fi);
-	for(Club miClub:clubs) {
+	for(int i = 0; i < clubs.size();i++) {
 		int j = 0;
-		do {
-			String br1 = br.readLine();
-			String[] b = br1.split(",");
-			miClub.addOwners(b[0],b[1],b[2],b[3],b[4]);
+		String msj = br.readLine();
+		while((msj) != null && j < 100) {
+			String[] b = msj.split(",");
+			clubs.get(i).addOwners(b[0],b[1],b[2],b[3],b[4]);
 			j++;
-		} while (j<2);
+			msj = br.readLine();
+		}
 } 
 
 	br.close();
-	
+	fi.close();
 	} catch (FileNotFoundException e) {
 
 	} catch (IOException e) {
@@ -310,17 +311,16 @@ public void loadPet(){
 	try {
 	FileReader fi = new FileReader(fl.getAbsoluteFile());
 	BufferedReader br = new BufferedReader(fi);
-	
+	String msj;
 	for(Club clubsitos:clubs) {
 		for(Owner owner: clubsitos.getOwners()) {
 			int j = 0;
-			do {
-				String a = br.readLine();
-				String[] b = a.split(",");
-				owner.getPets().add(new Pet(b[0],b[1],b[2],b[3],b[4]));
+			while((msj = br.readLine())!= null && j < 4) {
+				String[] b = msj.split(",");
+				owner.addAnimals(b[0],b[1],b[2],b[3],b[4]);
 				j++; 
-			} while (j<1);
-		
+				msj = br.readLine();
+			}
 	}
 
 	}
