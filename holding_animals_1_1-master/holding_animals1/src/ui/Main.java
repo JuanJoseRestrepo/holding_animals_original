@@ -487,9 +487,12 @@ public class Main {
 				
 			}else {
 				System.out.println("Vuelva pronto!!!");
+				for(Club miC: system.getClubs()) {
+				miC.serializableOwner();
 			}
 			
-		}catch(InputMismatchException e) {
+		}
+	}catch(InputMismatchException e) {
 			System.out.println("Por favor digite una opcion valida" + "  " + e.getClass());
 			reader.nextLine();
 		}

@@ -29,9 +29,25 @@ public class Holding implements Serializable{
 		this.archives = archives;
 		clubs = loadFileMocaForClub();
 		onlyOneTimeLoadOwners();
-		onlyOneTimeLoadPets();
-		
-	
+
+		System.out.println("---------PRIMERO----------");
+		for(Club clubsitos:clubs) {
+			System.out.println("------------------------");
+			System.out.println(clubsitos.toString());
+			System.out.println("------------------------");
+			for(Owner owner: clubsitos.getOwners()) {
+				System.out.println("////////////////////////////");
+				System.out.println(owner.toString());
+				System.out.println("////////////////////////////");
+				for(Pet pet: owner.getPets()) {
+					System.out.println("*************************");
+					System.out.println(pet.toString());
+					System.out.println("*************************");
+
+				}
+			}
+		}
+		System.out.println("---------FINAL----------");
 	}
 	
 	
@@ -50,25 +66,13 @@ public class Holding implements Serializable{
 		for(int i = 0; i < clubs.size();i++) {
 		if(clubs.get(i).getOwners().isEmpty()) {
 			loadOwner();
-			loadPets();
+			loadPet();
 		}
 	}
 		
 		
 	}
 	
-	public void onlyOneTimeLoadPets() {
-		
-		for(int i = 0; i < clubs.size();i++) {
-			for(Owner own: clubs.get(i).getOwners()) {
-				if(own.getPets().isEmpty()) {
-					loadPet();
-			}
-	}	
-}
-		
-}
-
 	
 	public void findClubWithClubAndOwnerAndPet(String idClubs,String idClien,String idPet,String petName, String gender,String typeOfPet,String bornPetDay){
 		boolean t = false;
@@ -373,7 +377,6 @@ public void loadOwner(){
 			j++;
 			msj = br.readLine();
 		}
-		
 } 
 
 	br.close();
@@ -547,6 +550,8 @@ public void ordenarTipoDeMascota() {
 		clubs.get(i).getMethodsPreferAnimal();
 	}
 }
+
+
 		
 }//Final
 	

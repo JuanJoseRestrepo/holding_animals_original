@@ -37,42 +37,9 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 		this.bornDay = bornDay;
 		
 		pets = new ArrayList<Pet>();
-
-		deserializablePet();
 	}
 	
-	public void serializablePet() {
-		File o = new File("Pet.dat");
-		 
-		try {
-			FileOutputStream fos = new FileOutputStream(o);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(pets);
-			oos.close();
-		}catch(IOException e) {
-			e.getCause();
-		}
-		
-		
-	}
 	
-	public void deserializablePet() {
-		File fl = new File("Pet.dat");
-		ArrayList<Pet> petsitos;
-		try {
-			FileInputStream fis = new FileInputStream(fl);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			petsitos = (ArrayList<Pet>) ois.readObject();
-			pets = petsitos;
-			
-		}catch(IOException e) {
-			e.getCause();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 	
 	public String getIdOwner() {
 		return idOwner;
@@ -125,7 +92,6 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	public void addAnimals(String idPet,String petName, String gender,String typeOfPet,String bornPetDay) {
 		
 		pets.add(new Pet(idPet,petName,gender,typeOfPet,bornPetDay));
-		serializablePet();
 	}
 	
 

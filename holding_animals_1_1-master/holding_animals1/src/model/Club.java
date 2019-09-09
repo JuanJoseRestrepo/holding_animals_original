@@ -121,7 +121,6 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	public void addOwners(String idOwner, String ownerNames, String ownerSecondNames,String typeOfAnimalsPrefer,String bornDay) {
 
 		owners.add(new Owner(idOwner,ownerNames,ownerSecondNames,typeOfAnimalsPrefer,bornDay));
-		serializableOwner();
 	}
 	
 
