@@ -16,7 +16,7 @@ class testHolding {
 	
 	
 	private void setupEscenario() {
-		
+		hol = new Holding("asda");
 		Club c = new Club("023131312","Coca Cola","2080/09/10","Lobo");
 		Club d = new Club("222223321","IssacCompany","2030/04/16","Obo");
 		Club e = new Club("444214132","NegroCompany","2014/08/01","Wick");
@@ -35,18 +35,13 @@ class testHolding {
 		clubsitos.add(u);
 		clubsitos.add(i);
 		
-		for(int z = 1; z < clubsitos.size();z++) {
-			
-			for(int j = z; j > 0 && clubsitos.get(j-1).compareTo(clubsitos.get(j)) > 0; j--) {
-				Club temp = clubsitos.get(j);
-				clubsitos.set(j,clubsitos.get(j-1));
-				clubsitos.set(j-1,temp);
-			}
+		hol.setClubs(clubsitos);
+		
 				
 		}
-	}
 	
 	private void setUpEscenario1() {
+		hol = new Holding("asdad");
 		Club c = new Club("023131312","Coca Cola","2080/09/10","Lobo");
 		Club d = new Club("222223321","IssacCompany","2030/04/16","Obo");
 		Club e = new Club("444214132","NegroCompany","2014/08/01","Wick");
@@ -116,34 +111,12 @@ class testHolding {
 		assertEquals("Coca Cola",clubsitos.get(0).getNameClub()); 
 	
 	}
-public Boolean delatedClubWithNumber(String id) {
-		
-		boolean t = false;
-		 
-		try {
-		for(int i = 0; i < clubsitos.size() && !t;i++) {
-			if(clubsitos.get(i).getIdClub().equals(id)) {
-				clubsitos.remove(i);
-				t = true;
-			}else {
-				throw new errorIdClubNotFound("No valido el id");
-			}
-		}
-	}catch(errorIdClubNotFound e) {
-		e.getCause();
-	}
-		return t;
-}
 	
 	@Test
-	void testOrdanate() {
-		setUpEscenario1();
-		delatedClubWithNumber("023131312");
-		for(int i = 0; i < clubsitos.size();i++) {
-			System.out.println(clubsitos.get(i).getIdClub());
-		}
+	void ordenarClubsPorIdTest() {
 		
-		assertFalse(delatedClubWithNumber("023131312"), "no se borro");
+		hol.ordenarClubesPorId();
+		
 	}
 
 }
