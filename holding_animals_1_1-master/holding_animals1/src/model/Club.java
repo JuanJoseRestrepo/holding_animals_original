@@ -40,9 +40,8 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		this.nameClub = nameClub;
 		this.creationDate = creationDate;
 		this.typeOfAnimals = typeOfAnimals;
-		serializableOwner();
-		owners = deserialazeOwner();
-		
+		owners = new ArrayList<Owner>();
+		deserialazeOwner();
 	
 	}
 	
@@ -173,7 +172,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		for(int i = 0; i < owners.size();i++) {
 			
 			if(owners.get(i).getIdOwner().equals(idDelMka)){
-				owners.remove(i);
+				owners.remove(owners.get(i));
 			}else {
 				throw new errorIdClubNotFound("No valido el id");
 			}
@@ -287,7 +286,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 			Owner menor = owners.get(i);
 			int indice = i;
 			for(int j = i +1; j < owners.size()-1;j++) {
-				if(owners.get(j).compareTo(menor) < 0) {
+				if(owners.get(j).compareTo(menor) > 0) {
 					
 					menor = owners.get(j);
 					indice = j;
@@ -307,9 +306,8 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 			
 			for(int j = i; j > 0 && owners.get(j-1).compare(owners.get(j-1), owners.get(j)) > 0;j--) {
 				Owner own = owners.get(j-1);
-				owners.set(j, own);
 				owners.set(j-1, owners.get(j));
-				
+				owners.set(j, own);
 			}
 			
 		}
@@ -377,34 +375,31 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		
 	}
 	
-	public ArrayList<Owner> deserialazeOwner() {
+	public void deserialazeOwner() {
 		
-	 File fl = new File("Clubsito.data");
-	 ArrayList<Owner> ownersitos = null;
-	 if(fl.exists()) {
+	 File fl = new File("Clubsito.dat");
+	 ArrayList<Owner> ownersitos;
 	 try {
 		 FileInputStream fls = new FileInputStream(fl);
 		 ObjectInputStream obs = new ObjectInputStream(fls);
 		 
 		 ownersitos = (ArrayList<Owner>) obs.readObject();
-		 owners = ownersitos;
+		 setOwners(ownersitos);
 		 
 	 }catch(IOException e) {
 		 e.getCause();
 	 } catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+	
+
 	}
-		return ownersitos;
-	 }else {
-		 owners = new ArrayList<Owner>();
-	 }
 	}
 	
 	
 	public void serializableOwner() {
 		
-		File fl = new File("Clubsito.data");
+		File fl = new File("Clubsito.dat");
 		
 		try {
 			FileOutputStream flo = new FileOutputStream(fl);
@@ -415,6 +410,52 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 			
 		}catch(IOException e) {
 			e.getCause();
+		}
+		
+	}
+	
+	public String mostrarInformacion() {
+		String msj = " ";
+		for(int j = 0; j < owners.size();j++) {
+			msj += owners.get(j).mostrarInfoOrdenado1();
+		}
+		return msj;
+	}
+	
+	public void getMethodsPetsName() {
+		
+		for(int j = 0; j < owners.size();j++) {
+			owners.get(j).ordenarPorNombres();
+		}
+		
+	}
+	
+	public void getMethodsPetsId() {
+		for(int j = 0; j < owners.size();j++) {
+			owners.get(j).ordenarPorIdPet();
+		}
+	}
+	
+	public void getMethodsGender() {
+		
+		for(int i = 0; i < owners.size();i++) {
+			owners.get(i).ordenarPorGenero();
+		}
+		
+	}
+	
+	public void getMethodsPreferAnimal() {
+		
+		for(int i = 0; i < owners.size();i++) {
+			owners.get(i).ordenarPorTipoDeAnimalElPet();
+		}
+		
+	}
+	
+	public void getMethodsDatesPets() {
+		
+		for(int j = 0; j < owners.size();j++){
+			owners.get(j).ordenarPorFecha();
 		}
 		
 	}

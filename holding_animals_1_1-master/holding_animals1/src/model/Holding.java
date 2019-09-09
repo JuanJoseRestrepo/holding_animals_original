@@ -50,6 +50,7 @@ public class Holding implements Serializable{
 		for(int i = 0; i < clubs.size();i++) {
 		if(clubs.get(i).getOwners().isEmpty()) {
 			loadOwner();
+			loadPets();
 		}
 	}
 		
@@ -70,14 +71,17 @@ public class Holding implements Serializable{
 
 	
 	public void findClubWithClubAndOwnerAndPet(String idClubs,String idClien,String idPet,String petName, String gender,String typeOfPet,String bornPetDay){
-
+		boolean t = false;
 		try {
 		for(int i = 0; i < clubs.size();i++) {
 			if(idClubs.equals(clubs.get(i).getIdClub())) {
 				clubs.get(i).searchForTheOwner(idClubs,idPet, petName, gender, typeOfPet, bornPetDay);
-			}else {
-				throw new errorIdClubNotFound("No valido el id");
+				t = true;
 			}
+		}
+		
+		if(t == false) {
+			throw new errorIdClubNotFound("No valido el id");
 		}
 	}catch(errorIdClubNotFound e) {
 		e.getCause();
@@ -86,16 +90,19 @@ public class Holding implements Serializable{
 
 	
 	public void findClubForOwner(String idClub, String idOwner,String ownerNames, String ownerSecondNames,String typeOfAnimalsPrefer,String bornDay) {
-
+		boolean t = false;
 		try {
 		for (int i = 0; i < clubs.size(); i++) {
 			if(clubs.get(i).getIdClub().equals(idClub)) {
 				clubs.get(i).addOwners(idOwner,ownerNames,ownerSecondNames,typeOfAnimalsPrefer,bornDay);
+				 t = true;
 				clubs.get(i).serializableOwner();
-				}else {
-					throw new errorIdClubNotFound("No valido el id");
 				}
 			}
+		
+		if(t == false) {
+				throw new errorIdClubNotFound("No valido el id");
+		}
 		}catch(errorIdClubNotFound e) {
 			e.getCause();
 		}
@@ -137,11 +144,13 @@ public class Holding implements Serializable{
 		try {
 		for(int i = 0; i < clubs.size() && !t;i++) {
 			if(clubs.get(i).getIdClub().equals(id)) {
-				clubs.remove(i);
+				clubs.remove(clubs.get(i));
 				t = true;
-			}else {
-				throw new errorIdClubNotFound("No valido el id");
 			}
+		}
+		
+		if(t == false) {
+			throw new errorIdClubNotFound("No valido el id");
 		}
 	}catch(errorIdClubNotFound e) {
 		e.getCause();
@@ -155,13 +164,15 @@ public class Holding implements Serializable{
 		try {
 		for(int i = 0; i < clubs.size() && !t;i++) {
 			if(clubs.get(i).getNameClub().equals(name)) {
-				clubs.remove(i);
+				clubs.remove(clubs.get(i));
 				t = true;
-			}else {
-				throw new errorNameNotFound("No valido el id");
-			}
-				
+			}	
 		}
+		
+		if(t == false) {
+				throw new errorNameNotFound("No valido el id");
+		}
+		
 	}catch(errorNameNotFound e) {
 		e.getCause();
 	}
@@ -169,13 +180,18 @@ public class Holding implements Serializable{
 	
 	public void delatedWithClubOwner(String idClubsi, String nombreOwner,String apellidoParaco) {
 		
+		boolean t = false;
+		
 		try {
 		for(int i = 0; i < clubs.size();i++) {
 			if(clubs.get(i).getIdClub().equals(idClubsi)) {
 				clubs.get(i).delatedOwner(nombreOwner,apellidoParaco);
-			}else{
-				throw new errorIdClubNotFound("No valido el id");
+				t = true;
 			}
+		}
+		
+		if(t == false) {
+			throw new errorIdClubNotFound("No valido el id");
 		}
 	}catch(errorIdClubNotFound e) {
 		e.getCause();
@@ -183,30 +199,37 @@ public class Holding implements Serializable{
 }
 	
 	public void delatedWithClubOwnerNumber(String idClubsi, String idOwner) {
-		
+		boolean t = false;
 		try {
 		for(int i = 0; i < clubs.size();i++) {
 			if(clubs.get(i).getIdClub().equals(idClubsi)) {
 				clubs.get(i).delatedOwnerNumber(idOwner);
-			}else {
-				throw new errorIdClubNotFound("No valido el id");
+				t = true;
 			}
 		}
+		
+		if(t == false) {
+			throw new errorIdClubNotFound("No valido el id");
+		}
+		
 		}catch(errorIdClubNotFound e) {
 			e.getCause();
 		}
 	}
 	
 	public void delatedWithClubWithPet(String idClubsi, String idOwner,String namePet) {
-		
+		boolean t = false;
 		try {
 		for(int i = 0; i < clubs.size();i++) {
 			if(clubs.get(i).getIdClub().equals(idClubsi)) {
-				
-			}else {
-				throw new errorIdClubNotFound("No valido el id");
+				clubs.get(i).delatedPetWithName(idOwner, namePet);
+				t = true;
 			}
 		}
+		if(t == false) {
+			throw new errorIdClubNotFound("No valido el id");
+		}
+		
 	}catch(errorIdClubNotFound e) {
 		e.getCause();
 	}
@@ -214,15 +237,17 @@ public class Holding implements Serializable{
 }
 	
 	public void delatedWithClubWithPetid(String idClubsi,String idOwner,String idPet) {
-		
+		boolean t = false;
 		try {
 			for(int j = 0; j < clubs.size();j++) {
 				if(clubs.get(j).getIdClub().equals(idClubsi)) {
-					
-				}else {
-					throw new errorNameNotFound("No se encontro el name");
+					clubs.get(j).delatedPetWithIdPet(idOwner, idPet);
 				}
 			}
+			if(t == false) {
+				throw new errorNameNotFound("No se encontro el name");
+			}
+			
 		}catch(errorNameNotFound e){
 			e.getCause();
 		}
@@ -348,12 +373,13 @@ public void loadOwner(){
 			j++;
 			msj = br.readLine();
 		}
+		
 } 
 
 	br.close();
 	fi.close();
 	} catch (FileNotFoundException e) {
-
+		e.getCause();
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -373,17 +399,17 @@ public void loadPet(){
 	for(Club clubsitos:clubs) {
 		for(Owner owner: clubsitos.getOwners()) {
 			int j = 0;
-			while((msj = br.readLine())!= null && j < 10) {
+			while((msj = br.readLine())!= null && j < 4) {
 				String[] b = msj.split(",");
 				owner.addAnimals(b[0],b[1],b[2],b[3],b[4]);
 				j++; 
 				msj = br.readLine();
-			}
+			}	
 	}
 
 	}
 	br.close();
-	
+	fi.close();
 	} catch (FileNotFoundException e) {
 		
 		e.getCause();
@@ -408,51 +434,39 @@ public void ordenateTypeOfAnimals() {
 	}	
 }
 
-public void getMethodsSortWithTypeOfAnimals(String idClub) {
+public void getMethodsSortWithTypeOfAnimals() {
 	
 	for (int i = 0; i < clubs.size(); i++) {
-		if(clubs.get(i).getIdClub().equals(idClub)) {
 			clubs.get(i).ordenarPorTipoDeAnimal();
-		}
 	}
 	
 }
 
-public void getMethodsSortWithCode(String idClub) {
+public void getMethodsSortWithCode() {
 	
-	boolean t = false;
-	for (int i = 0; i < clubs.size() && !t; i++) {
-		try{
-		if(clubs.get(i).getIdClub().equals(idClub)) {
+	for (int i = 0; i < clubs.size(); i++) {
 			clubs.get(i).ordenarPorIdOwner();
-		}else {
-			throw new errorIdClubNotFound("No valido el id");
 		}
-	}catch(errorIdClubNotFound e) {
-		System.out.println("No valido el id");
-	}
 }
 	
+public void getMethodsSortWithSecondNames() {
+	
+	for (int i = 0; i < clubs.size(); i++) {
+			clubs.get(i).ordenarPorSegundosNombres();
+		}
 }
 
-
-public void getMethodsSortWithName(String idClub) {
-	boolean t = false;
-	for (int i = 0; i < clubs.size() && !t; i++) {
-		if(clubs.get(i).getIdClub().equals(idClub)) {
+public void getMethodsSortWithName() {
+	for (int i = 0; i < clubs.size(); i++) {
+		
 			clubs.get(i).ordenarPorNombrePrimero();
-			t = true;
-		}
 	}
 }
 
-public void getMethodsSortWithDates(String idClub) {
-	boolean t = false;
-	for (int i = 0; i < clubs.size() && !t; i++) {
-		if(clubs.get(i).getIdClub().equals(idClub)) {
+public void getMethodsSortWithDates() {
+	for (int i = 0; i < clubs.size(); i++) {
 			clubs.get(i).ordenarPorFechas();
-			t = true;
-		}
+
 	}
 }
 
@@ -470,14 +484,11 @@ public Date formatTheDateOfThis(String dateOfThis) {
 	return inicialDate;
 } 
 
-public String mostrarInfo(String idCLub) {
+public String mostrarInfo() {
 	String msj = " ";
 	for(int i = 0; i < clubs.size();i++) {
-		if(idCLub.equals(clubs.get(i))){
 			msj += " " +clubs.get(i).mostrarInfoOrdenado();
 		}
-		
-	}
 	
 	return msj;
 }
@@ -493,7 +504,49 @@ public void ordenarClubesPorNumeroDeDueños() {
 			
 	} 
 }
-		
+	
+public String mostrarInfoOrdenado3() {
+	String msj = "";
+	
+	for(int j = 0; j < clubs.size();j++) {
+		msj += clubs.get(j).mostrarInformacion();
+	}
+	return msj;
+}
+
+public void ordenarPorNombrePets() {
+	
+	for(int j = 0; j < clubs.size();j++) {
+		clubs.get(j).getMethodsPetsName();
+	}
+}
+
+public void ordenarPorDates() {
+	
+	for(int i = 0; i < clubs.size();i++) {
+		clubs.get(i).getMethodsDatesPets();
+	}
+	
+}
+
+public void ordenarPorGender() {
+	for(int i = 0; i < clubs.size();i++) {
+		clubs.get(i).getMethodsGender();
+	}
+	
+}
+
+public void ordenarPorPetsId() {
+	for(int i = 0; i < clubs.size();i++) {
+		clubs.get(i).getMethodsPetsId();
+	}
+}
+
+public void ordenarTipoDeMascota() {
+	for(int i = 0; i < clubs.size();i++) {
+		clubs.get(i).getMethodsPreferAnimal();
+	}
+}
 		
 }//Final
 	

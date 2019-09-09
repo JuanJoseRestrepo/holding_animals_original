@@ -116,7 +116,7 @@ class testHolding {
 		assertEquals("Coca Cola",clubsitos.get(0).getNameClub()); 
 	
 	}
-public void delatedClubWithNumber(String id) {
+public Boolean delatedClubWithNumber(String id) {
 		
 		boolean t = false;
 		 
@@ -132,15 +132,18 @@ public void delatedClubWithNumber(String id) {
 	}catch(errorIdClubNotFound e) {
 		e.getCause();
 	}
+		return t;
 }
 	
 	@Test
-	void test1() {
+	void testOrdanate() {
 		setUpEscenario1();
 		delatedClubWithNumber("023131312");
 		for(int i = 0; i < clubsitos.size();i++) {
 			System.out.println(clubsitos.get(i).getIdClub());
 		}
+		
+		assertFalse(delatedClubWithNumber("023131312"), "no se borro");
 	}
 
 }

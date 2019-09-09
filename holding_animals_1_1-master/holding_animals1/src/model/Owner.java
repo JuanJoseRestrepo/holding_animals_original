@@ -37,12 +37,12 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 		this.bornDay = bornDay;
 		
 		pets = new ArrayList<Pet>();
-		serializablePet();
+
 		deserializablePet();
 	}
 	
 	public void serializablePet() {
-		File o = new File("Pet.data");
+		File o = new File("Pet.dat");
 		 
 		try {
 			FileOutputStream fos = new FileOutputStream(o);
@@ -57,7 +57,7 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	}
 	
 	public void deserializablePet() {
-		File fl = new File("Pet.data");
+		File fl = new File("Pet.dat");
 		ArrayList<Pet> petsitos;
 		try {
 			FileInputStream fis = new FileInputStream(fl);
@@ -138,13 +138,18 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	msj += "El tipo de animal preferido es:" + typeOfAnimalsPrefer + " "; 
 	msj += "El dia de nacimiento es:" + bornDay + " "; 
 	
-	for(int i = 0; i < pets.size();i++) {
-		pets.get(i).toString();
-	}
-	
 	return msj;
 	}
-
+	
+	public String mostrarInfoOrdenado1() {
+		String msj = " ";
+		
+		for(int j = 0; j < pets.size();j++) {
+			msj +=  "\n" + pets.get(j).toString();
+		}
+		return msj;
+	}
+	
 	@Override
 	public int compare(Owner o1, Owner o2) {
 		// TODO Auto-generated method stub
@@ -192,20 +197,12 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	
 	public void ordenarPorIdPet() {
 		
-		for(int i = 0; i < pets.size();i++) {
-			Pet menor = pets.get(i);
-			int indice = i;
-			for(int j = i +1; i < pets.size()-1;j++) {
-				if(pets.get(j).compare(pets.get(j), pets.get(j+1)) < 0) {
-					menor = pets.get(j);
-					indice = j;
-				}
-				
+		for(int i = 1; i < pets.size();i++) {
+			for(int j = i; j > 0 && pets.get(j-1).compare(pets.get(j-1),pets.get(j)) > 0;j--) {
+				Pet petsito = pets.get(j);
+				pets.set(j, pets.get(j-1));
+				pets.set(j-1, petsito);
 			}
-			Pet temp = pets.get(i);
-			pets.set(i,menor);
-			pets.set(indice, temp);
-			
 		}
 		
 	}
@@ -263,7 +260,7 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 		
 		for(int j = 0; j < pets.size();j++) {
 			if(pets.get(j).getIdPet().equals(idPet)) {
-				pets.remove(j);
+				pets.remove(pets.get(j));
 			}
 		}
 	}
@@ -271,7 +268,7 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	public void deletePetName(String nameClub) {
 		for(int j = 0; j < pets.size();j++) {
 			if(pets.get(j).getPetName().equals(nameClub)) {
-				pets.remove(j);
+				pets.remove(pets.get(j));
 			}
 		}
 	}

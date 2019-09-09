@@ -177,7 +177,7 @@ public class Main {
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 					}	
 				}
-				
+				 
 				
 			}else if(inputUser == 5) {
 				int userImput2 = 0;
@@ -378,29 +378,29 @@ public class Main {
 					reader.nextLine(); 
 					
 					if(userNumber == 1) {
-						System.out.println("Por favor digite el id del club");
-						String msj = reader.nextLine();
-						reader.nextLine();
-						
-						system.getMethodsSortWithCode(msj);
-						System.out.println(system.mostrarInfo(msj));
+
+						system.getMethodsSortWithCode();
+						System.out.println(system.mostrarInfo());
 						
 					}else if(userNumber == 2) {
 						
-						system.ordenarClubesPorNombre();
-						System.out.println(system.mostrarInfoOrdenado());
+						system.getMethodsSortWithName();
+						System.out.println(system.mostrarInfo());
 						
 					}else if(userNumber == 3) {
 						
-						system.ordenarFechas();
-						System.out.println(system.mostrarInfoOrdenado());
+						system.getMethodsSortWithDates();
+						System.out.println(system.mostrarInfo());
 						
 					}else if(userNumber == 4){
-						system.ordenateTypeOfAnimals();
-						System.out.println(system.mostrarInfoOrdenado());
+						system.getMethodsSortWithTypeOfAnimals();
+						System.out.println(system.mostrarInfo());
 						
 					}else if(userNumber == 5) {
-
+						system.getMethodsSortWithSecondNames();
+						System.out.println(system.mostrarInfo());
+						
+						
 					}else{
 						
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
@@ -428,6 +428,62 @@ public class Main {
 				
 				
 			}else if(inputUser == 9) {
+				int userImput4 = 0;
+				
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("1.Mostrar Pets ordenados por id");
+				System.out.println("2.Mostrar Pets ordenados por nombre ");
+				System.out.println("3.Mostrar owners ordenados por Fechas");
+				System.out.println("4.Mostrar owners ordenados por tipo de animal");
+				System.out.println("5.Mostrar owners ordenados por genero");
+				System.out.println("6. Salir");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				
+				while(userImput4 != 6) {
+					userImput4 = reader.nextInt();
+					reader.nextLine();
+					
+					if(userImput4 == 1) {
+						system.ordenarPorPetsId();
+						System.out.println(system.mostrarInfoOrdenado3());
+					}else if(userImput4 == 2) {
+						system.ordenarPorNombrePets();
+						System.out.println(system.mostrarInfoOrdenado3());
+					}else if(userImput4 == 3) {
+						system.ordenarPorDates();
+						System.out.println(system.mostrarInfoOrdenado3());
+					}else if(userImput4 == 4) {
+						system.ordenarTipoDeMascota();
+						System.out.println(system.mostrarInfoOrdenado3());
+						
+					}else if(userImput4 == 5) {
+						system.ordenarPorGender();
+						System.out.println(system.mostrarInfoOrdenado3());
+					}else {
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("1.Crear club");
+						System.out.println("2.Crear dueño");
+						System.out.println("3.Crear mascota");
+						System.out.println("4.Eliminas el clubsito");
+						System.out.println("5.Eliminar al dueño :O");
+						System.out.println("6.Eliminar a la mascota");
+						System.out.println("7.Mostrar la informacion ordenada de los clubes");
+						System.out.println("8.Mostrar la informacion ordenada de los owners");
+						System.out.println("9. Mostrar la informacion ordenada de los pets");
+						System.out.println("10.Salir del programa");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+
+					}
+					
+					
+				}
+				
+				
+				
 				
 			}else {
 				System.out.println("Vuelva pronto!!!");
