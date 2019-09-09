@@ -43,7 +43,7 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	
 	public void serializablePet() {
 		File o = new File("Pet.data");
-		
+		 
 		try {
 			FileOutputStream fos = new FileOutputStream(o);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -257,6 +257,23 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 			}
 		}
 		
+	}
+	
+	public void deletePet(String idPet) {
+		
+		for(int j = 0; j < pets.size();j++) {
+			if(pets.get(j).getIdPet().equals(idPet)) {
+				pets.remove(j);
+			}
+		}
+	}
+	
+	public void deletePetName(String nameClub) {
+		for(int j = 0; j < pets.size();j++) {
+			if(pets.get(j).getPetName().equals(nameClub)) {
+				pets.remove(j);
+			}
+		}
 	}
 	
 }

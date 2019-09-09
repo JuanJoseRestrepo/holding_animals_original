@@ -137,11 +137,154 @@ public class Main {
 				
 				system.findClubWithClubAndOwnerAndPet(idPetClub, idDelDueño, idPetsito, idName, gender, typeOfPet3, datePe);
 				
-			}else if(inputUser == 4) {
+			}else if(inputUser == 4) { 
+				int userImput1 = 0;
+				System.out.println("Digite lo siguiente");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("1.Eliminar club por id ");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("2.Eliminar club por nombre ");
+				System.out.println("3.Salir");
+				
+				while(userImput1 != 3) {
+					userImput1 = reader.nextInt();
+					reader.nextLine();
+					
+					if(userImput1 == 1) {
+						System.out.println("Digite el id del club");
+						String idClub = reader.nextLine();
+						
+						system.delatedClubWithNumber(idClub);
+					}else if(userImput1 == 2) {
+						System.out.println("Digite el nombre del club");
+						String nameClub = reader.nextLine();
+						
+						system.delatedClubWithName(nameClub);
+					}else {
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("1.Crear club");
+						System.out.println("2.Crear dueño");
+						System.out.println("3.Crear mascota");
+						System.out.println("4.Eliminas el clubsito");
+						System.out.println("5.Eliminar al dueño :O");
+						System.out.println("6.Eliminar a la mascota");
+						System.out.println("7.Mostrar la informacion ordenada de los clubes");
+						System.out.println("8.Mostrar la informacion ordenada de los owners");
+						System.out.println("9. Mostrar la informacion ordenada de los pets");
+						System.out.println("10.Salir del programa");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+					}	
+				}
+				
 				
 			}else if(inputUser == 5) {
+				int userImput2 = 0;
+				System.out.println("Digite lo siguiente");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("1.Eliminar owner por nombre ");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("2.Eliminar owner por id ");
+				System.out.println("3.Salir");
 				
+				while(userImput2 != 3) {
+					userImput2 = reader.nextInt();
+					reader.nextLine();
+				
+				if(userImput2 == 1) {
+				System.out.println("Digite el id del club");
+				String idClubsito = reader.nextLine();
+				
+				System.out.println("Digite el nombre del dueño");
+				String nombreOwner = reader.nextLine();
+				
+				System.out.println("Digite el apellido del dueño");
+				String apellidoParaco = reader.nextLine();
+				
+				system.delatedWithClubOwner(idClubsito, nombreOwner, apellidoParaco);
+					}else if(userImput2 == 2) {
+						System.out.println("Digite el id del club");
+						String idClubsisos = reader.nextLine();
+						
+						System.out.println("Digite el id del owner");
+						String idOwner1 = reader.nextLine();
+						
+						system.delatedWithClubOwnerNumber(idClubsisos, idOwner1);
+					}else {
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("1.Crear club");
+						System.out.println("2.Crear dueño");
+						System.out.println("3.Crear mascota");
+						System.out.println("4.Eliminas el clubsito");
+						System.out.println("5.Eliminar al dueño :O");
+						System.out.println("6.Eliminar a la mascota");
+						System.out.println("7.Mostrar la informacion ordenada de los clubes");
+						System.out.println("8.Mostrar la informacion ordenada de los owners");
+						System.out.println("9. Mostrar la informacion ordenada de los pets");
+						System.out.println("10.Salir del programa");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+					}
+				}
 			}else if(inputUser == 6) {
+				int userNumber3 = 0;
+				
+				System.out.println("Digite lo siguiente");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("1.Eliminar owner por nombre ");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("2.Eliminar owner por id ");
+				System.out.println("3.Salir");
+				
+				while(userNumber3 != 3) {
+					userNumber3 = reader.nextInt();
+					reader.nextLine();
+					
+					if(userNumber3 == 1) {
+						System.out.println("Digite el id del Club");
+						String idClubsitos1 = reader.nextLine();
+						
+						System.out.println("Digite el idOwner");
+						String idOwner1 = reader.nextLine();
+						
+						System.out.println("Digite el nombre de la mascota");
+						String namePet = reader.nextLine();
+						
+						system.delatedWithClubWithPet(idClubsitos1, idOwner1, namePet);
+					}else if(userNumber3 == 2) {
+						System.out.println("Digite el id del club");
+						String idClubsixos = reader.nextLine();
+						
+						System.out.println("Digite el id del Owner");
+						String idOwnerss = reader.nextLine();
+						
+						System.out.println("Digite el id del pet");
+						String idPetsito = reader.nextLine();
+						
+						system.delatedWithClubWithPetid(idClubsixos, idOwnerss, idPetsito);
+						
+					}else {
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("1.Crear club");
+						System.out.println("2.Crear dueño");
+						System.out.println("3.Crear mascota");
+						System.out.println("4.Eliminas el clubsito");
+						System.out.println("5.Eliminar al dueño :O");
+						System.out.println("6.Eliminar a la mascota");
+						System.out.println("7.Mostrar la informacion ordenada de los clubes");
+						System.out.println("8.Mostrar la informacion ordenada de los owners");
+						System.out.println("9. Mostrar la informacion ordenada de los pets");
+						System.out.println("10.Salir del programa");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+					}
+					
+					
+				}
+				
 				
 			}else if(inputUser == 7) {
 				int userNumber = 0;

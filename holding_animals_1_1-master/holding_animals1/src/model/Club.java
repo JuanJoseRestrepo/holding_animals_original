@@ -40,9 +40,10 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		this.nameClub = nameClub;
 		this.creationDate = creationDate;
 		this.typeOfAnimals = typeOfAnimals;
-		owners = new ArrayList<Owner>();
 		serializableOwner();
-		deserialazeOwner();
+		owners = deserialazeOwner();
+		
+	
 	}
 	
 	/**
@@ -129,40 +130,58 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	 * 
 	 */
 	public void searchForTheOwner(String idClient, String idPet,String petName, String gender,String typeOfPet,String bornPetDay) {
+		
+		try {
 		for (int i = 0; i < owners.size(); i++){ 
-			if(!owners.get(i).getIdOwner().equals(idClient)) {
+			if(owners.get(i).getIdOwner().equals(idClient)) {
 				owners.get(i).addAnimals(idPet, petName, gender, typeOfPet, bornPetDay);
-			}	
+			}else {
+				throw new errorIdClubNotFound("No valido el id");
+			}
 		}
+	}catch(errorIdClubNotFound e) {
+		e.getCause();
 	}
+}
 	
 	/**
 	 * 
 	 */
 	public void delatedOwner(String nombredelMka,String apellidoOwner) {
 		
+		try {
 		for(int i = 0; i < owners.size();i++) {
 			
 			if((owners.get(i).getOwnerNames().equals(nombredelMka)) && (owners.get(i).getOwnerSecondNames().equals(apellidoOwner))){
 				owners.remove(i);
+			}else {
+				throw new errorNameNotFound("No valido el id");
 			}
 			
 		}
-		
+	}catch(errorNameNotFound e) {
+		e.getCause();
 	}
+}
 	
 	/**
 	 * 
 	 */
 	public void delatedOwnerNumber(String idDelMka) {
 		
+		try {
 		for(int i = 0; i < owners.size();i++) {
 			
 			if(owners.get(i).getIdOwner().equals(idDelMka)){
 				owners.remove(i);
+			}else {
+				throw new errorIdClubNotFound("No valido el id");
 			}
 			
 		}
+	}catch(errorIdClubNotFound e) {
+		e.getCause();
+	}
 		
 	}
 	
@@ -171,12 +190,36 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	 */
 	public void delatedPetWithName(String idOwner,String namePet){
 		
+		try {
 		for(int i = 0; i < owners.size();i++) {
 			
 			if(owners.get(i).getIdOwner().equals(idOwner)) {
-				
+				owners.get(i).deletePetName(namePet);
+			}else {
+				throw new errorIdClubNotFound("No valido el id");
 			}
 			
+		}
+		}catch(errorIdClubNotFound e) {
+			e.getCause();
+		}
+		
+	}
+	
+	public void delatedPetWithIdPet(String idOwner,String idPet){
+		
+		try {
+		for(int i = 0; i < owners.size();i++) {
+			
+			if(owners.get(i).getIdOwner().equals(idOwner)) {
+				owners.get(i).deletePet(idPet);
+			}else {
+				throw new errorIdClubNotFound("No valido el id");
+			}
+			
+		}
+		}catch(errorIdClubNotFound e) {
+			e.getCause();
 		}
 		
 	}
@@ -334,10 +377,11 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		
 	}
 	
-	public void deserialazeOwner() {
+	public ArrayList<Owner> deserialazeOwner() {
 		
 	 File fl = new File("Clubsito.data");
-	 ArrayList<Owner> ownersitos;
+	 ArrayList<Owner> ownersitos = null;
+	 if(fl.exists()) {
 	 try {
 		 FileInputStream fls = new FileInputStream(fl);
 		 ObjectInputStream obs = new ObjectInputStream(fls);
@@ -351,8 +395,10 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-		
-		
+		return ownersitos;
+	 }else {
+		 owners = new ArrayList<Owner>();
+	 }
 	}
 	
 	

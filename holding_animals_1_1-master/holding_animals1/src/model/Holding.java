@@ -71,24 +71,35 @@ public class Holding implements Serializable{
 	
 	public void findClubWithClubAndOwnerAndPet(String idClubs,String idClien,String idPet,String petName, String gender,String typeOfPet,String bornPetDay){
 
-		
+		try {
 		for(int i = 0; i < clubs.size();i++) {
 			if(idClubs.equals(clubs.get(i).getIdClub())) {
 				clubs.get(i).searchForTheOwner(idClubs,idPet, petName, gender, typeOfPet, bornPetDay);
+			}else {
+				throw new errorIdClubNotFound("No valido el id");
 			}
 		}
+	}catch(errorIdClubNotFound e) {
+		e.getCause();
 	}
+}
 
 	
 	public void findClubForOwner(String idClub, String idOwner,String ownerNames, String ownerSecondNames,String typeOfAnimalsPrefer,String bornDay) {
 
-		
+		try {
 		for (int i = 0; i < clubs.size(); i++) {
 			if(clubs.get(i).getIdClub().equals(idClub)) {
 				clubs.get(i).addOwners(idOwner,ownerNames,ownerSecondNames,typeOfAnimalsPrefer,bornDay);
+				clubs.get(i).serializableOwner();
+				}else {
+					throw new errorIdClubNotFound("No valido el id");
 				}
-			}	
+			}
+		}catch(errorIdClubNotFound e) {
+			e.getCause();
 		}
+	}
 	
 	public void registerClubInTheSystem(String idClub,String nameClub,String creationDate,String typeOfAnimals) {
 		
@@ -122,54 +133,101 @@ public class Holding implements Serializable{
 	public void delatedClubWithNumber(String id) {
 		
 		boolean t = false;
-		
+		 
+		try {
 		for(int i = 0; i < clubs.size() && !t;i++) {
 			if(clubs.get(i).getIdClub().equals(id)) {
 				clubs.remove(i);
 				t = true;
-			}	
-		}	
+			}else {
+				throw new errorIdClubNotFound("No valido el id");
+			}
+		}
+	}catch(errorIdClubNotFound e) {
+		e.getCause();
 	}
+}
 	
 	
 	public void delatedClubWithName(String name) {
 		
 		boolean t = false;
-		
+		try {
 		for(int i = 0; i < clubs.size() && !t;i++) {
 			if(clubs.get(i).getNameClub().equals(name)) {
 				clubs.remove(i);
 				t = true;
-			}	
-		}	
+			}else {
+				throw new errorNameNotFound("No valido el id");
+			}
+				
+		}
+	}catch(errorNameNotFound e) {
+		e.getCause();
 	}
+}
 	
 	public void delatedWithClubOwner(String idClubsi, String nombreOwner,String apellidoParaco) {
 		
+		try {
 		for(int i = 0; i < clubs.size();i++) {
 			if(clubs.get(i).getIdClub().equals(idClubsi)) {
 				clubs.get(i).delatedOwner(nombreOwner,apellidoParaco);
-			}	
-		}		
+			}else{
+				throw new errorIdClubNotFound("No valido el id");
+			}
+		}
+	}catch(errorIdClubNotFound e) {
+		e.getCause();
 	}
+}
 	
 	public void delatedWithClubOwnerNumber(String idClubsi, String idOwner) {
 		
+		try {
 		for(int i = 0; i < clubs.size();i++) {
 			if(clubs.get(i).getIdClub().equals(idClubsi)) {
 				clubs.get(i).delatedOwnerNumber(idOwner);
-			}	
-		}		
+			}else {
+				throw new errorIdClubNotFound("No valido el id");
+			}
+		}
+		}catch(errorIdClubNotFound e) {
+			e.getCause();
+		}
 	}
 	
-	public void delatedWithClubWithOwner(String idClubsi, String idOwner,String namePet) {
+	public void delatedWithClubWithPet(String idClubsi, String idOwner,String namePet) {
 		
+		try {
 		for(int i = 0; i < clubs.size();i++) {
 			if(clubs.get(i).getIdClub().equals(idClubsi)) {
 				
+			}else {
+				throw new errorIdClubNotFound("No valido el id");
 			}
 		}
+	}catch(errorIdClubNotFound e) {
+		e.getCause();
+	}
 		 
+}
+	
+	public void delatedWithClubWithPetid(String idClubsi,String idOwner,String idPet) {
+		
+		try {
+			for(int j = 0; j < clubs.size();j++) {
+				if(clubs.get(j).getIdClub().equals(idClubsi)) {
+					
+				}else {
+					throw new errorNameNotFound("No se encontro el name");
+				}
+			}
+		}catch(errorNameNotFound e){
+			e.getCause();
+		}
+		
+		
 	}
 	
 	public ArrayList<Club> loadFileMocaForClub() {
@@ -284,7 +342,7 @@ public void loadOwner(){
 	for(int i = 0; i < clubs.size();i++) {
 		int j = 0;
 		String msj = br.readLine();
-		while((msj) != null && j < 100) {
+		while((msj) != null && j < 10) {
 			String[] b = msj.split(",");
 			clubs.get(i).addOwners(b[0],b[1],b[2],b[3],b[4]);
 			j++;
@@ -315,7 +373,7 @@ public void loadPet(){
 	for(Club clubsitos:clubs) {
 		for(Owner owner: clubsitos.getOwners()) {
 			int j = 0;
-			while((msj = br.readLine())!= null && j < 4) {
+			while((msj = br.readLine())!= null && j < 10) {
 				String[] b = msj.split(",");
 				owner.addAnimals(b[0],b[1],b[2],b[3],b[4]);
 				j++; 
@@ -400,7 +458,7 @@ public void getMethodsSortWithDates(String idClub) {
 
 public Date formatTheDateOfThis(String dateOfThis) {
 	Date inicialDate = null;
-	SimpleDateFormat dateOfThis1 = new SimpleDateFormat("yyyy-mm-dd");
+	SimpleDateFormat dateOfThis1 = new SimpleDateFormat("yyyy/mm/dd");
 	
 	try {
 		inicialDate = dateOfThis1.parse(dateOfThis);
