@@ -4,6 +4,8 @@ import model.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import exceptions.errorRank;
+
 public class Main {
 
 	private Holding system;
@@ -38,6 +40,10 @@ public class Main {
 			try {
 			inputUser = reader.nextInt();
 			reader.nextLine();
+			
+			if(inputUser > 11) {
+				throw new errorRank("ada");
+			}
 			
 			if(inputUser == 1) {
 				System.out.println("Digite la identificacion del club");
@@ -155,11 +161,13 @@ public class Main {
 						String idClub = reader.nextLine();
 						
 						system.delatedClubWithNumber(idClub);
+						system.saveClub();
 					}else if(userImput1 == 2) {
 						System.out.println("Digite el nombre del club");
 						String nameClub = reader.nextLine();
 						
 						system.delatedClubWithName(nameClub);
+						system.saveClub();
 					}else {
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
@@ -507,6 +515,9 @@ public class Main {
 	}catch(InputMismatchException e) {
 			System.out.println("Por favor digite una opcion valida" + "  " + e.getClass());
 			reader.nextLine();
+	} catch (errorRank e) {
+		System.out.println("Digite un rango valido");
+		e.getCause();
 	}
 			
 			
