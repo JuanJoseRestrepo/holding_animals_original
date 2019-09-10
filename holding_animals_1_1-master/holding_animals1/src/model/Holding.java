@@ -309,7 +309,7 @@ public class Holding implements Serializable{
 			
 			for(int j = i + 1; j < clubs.size();j++) {
 				
-				if(clubs.get(j).compare(menor,clubs.get(j)) < 0) {
+				if(clubs.get(j).compare(menor,clubs.get(j)) > 0) {
 					
 					menor = clubs.get(j);
 					posicion = j;
@@ -569,33 +569,83 @@ public void ordenarClubesPorNumeroDeDueños() {
 	} 
 }
 	
-public String mostrarInfoOrdenado3() {
+public String mostrarInfoOrdenado3(String idClubsi, String idOwner) {
 	String msj = "";
-	
+	boolean t = false;
+	try {
 	for(int j = 0; j < clubs.size();j++) {
-		msj += clubs.get(j).mostrarInformacion();
+		if(clubs.get(j).getIdClub().equals(idClubsi)) {
+		msj += clubs.get(j).mostrarInformacion(idOwner);
+		}
+	}
+	if(t == false) {
+		throw new errorIdClubNotFound("El id no es valido");
+	}
+	
+	}catch(errorIdClubNotFound e) {
+		e.getCause();
 	}
 	return msj;
 }
 
-public void ordenarPorNombrePets() {
-	
+public void ordenarPorNombrePets(String idClubsi,String idOwner) {
+	boolean t = false;
+	try {
 	for(int j = 0; j < clubs.size();j++) {
-		clubs.get(j).getMethodsPetsName();
+		if(clubs.get(j).getIdClub().equals(idClubsi)) {
+		clubs.get(j).getMethodsPetsName(idOwner);
+		t = true;
+		}
+	}
+	if(t == false) {
+		throw new errorIdClubNotFound("No se encontro el id");
+	}
+	
+	}catch(errorIdClubNotFound e) {
+		e.getCause();
 	}
 }
 
-public void ordenarPorDates() {
+public void ordenarPorDates(String idClubsi,String idOwner) {
 	
+	boolean t = false;
+	
+	try {
 	for(int i = 0; i < clubs.size();i++) {
-		clubs.get(i).getMethodsDatesPets();
+		if(clubs.get(i).getIdClub().equals(idClubsi)) {
+		clubs.get(i).getMethodsDatesPets(idOwner);
+		t = true;
+		}
 	}
+	
+	if(t == false) {
+		throw new errorIdClubNotFound("No valido el id");
+	}
+	
+  }catch(errorIdClubNotFound e) {
+	  e.getMessage();
+  }
 	
 }
 
-public void ordenarPorGender() {
+public void ordenarPorGender(String idClubisto,String idOwner) {
+	
+	boolean t = false;
+	
+	try {
 	for(int i = 0; i < clubs.size();i++) {
-		clubs.get(i).getMethodsGender();
+		if(clubs.get(i).getIdClub().equals(idClubisto)) {
+		clubs.get(i).getMethodsGender(idOwner);
+		t = true;
+		}
+	}
+	
+	if(t == false) {
+		throw new errorIdClubNotFound("No se encontro");
+	}
+	
+	}catch(errorIdClubNotFound e) {
+		e.getMessage();
 	}
 	
 }

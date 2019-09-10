@@ -119,24 +119,24 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	@Override
 	public int compare(Owner o1, Owner o2) {
 		// TODO Auto-generated method stub
-		return o1.getOwnerNames().compareTo(o2.getOwnerNames());
+		return o1.getOwnerNames().compareToIgnoreCase(o2.getOwnerNames());
 	}
 
 	@Override
 	public int compareTo(Owner o1) {
 		// TODO Auto-generated method stub
-		return idOwner.compareTo(o1.getIdOwner()) ;
+		return idOwner.compareToIgnoreCase(o1.getIdOwner()) ;
 	}
 	
 	public int compareToSecondNames(Owner o1, Owner o2) {
 		
-		return o1.getOwnerSecondNames().compareTo(o2.getOwnerSecondNames());
+		return o1.getOwnerSecondNames().compareToIgnoreCase(o2.getOwnerSecondNames());
 		
 	}
 	
 	public int compareToTypeOfAnimalsPrefer(Owner o1) {
 		
-		return typeOfAnimalsPrefer.compareTo(o1.getTypeOfAnimalsPrefer());
+		return typeOfAnimalsPrefer.compareToIgnoreCase(o1.getTypeOfAnimalsPrefer());
 		
 	}
 	
@@ -148,7 +148,7 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	
 	
 	public Date formatTheDateOfThis(String dateOfThis) {
-		Date inicialDate = null;
+		Date inicialDate;
 		SimpleDateFormat dateOfThis1 = new SimpleDateFormat("yyyy/MM/dd");
 		
 		try {
