@@ -358,10 +358,10 @@ public class Holding implements Serializable{
 
 public void loadOwner(){
 	
-	File fl = new File("Ownersitos.csv");
+	File fl = new File("files\\Ownersitos.csv");
 	
 	try {
-	FileReader fi = new FileReader("Ownersitos.csv");
+	FileReader fi = new FileReader(fl);
 	BufferedReader br = new BufferedReader(fi);
 	for(int i = 0; i < clubs.size();i++) {
 		int j = 0;
@@ -388,7 +388,7 @@ public void loadOwner(){
 
 public void loadPet(){
 
-	File fl = new File("Pets.csv");
+	File fl = new File("files\\Pets.csv");
 	
 	try {
 	FileReader fi = new FileReader(fl.getAbsoluteFile());

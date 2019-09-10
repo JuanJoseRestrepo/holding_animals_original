@@ -394,7 +394,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	
 	public void deserialazeOwner() {
 		
-	 File fl = new File("Clubsito.dat");
+	 File fl = new File("files\\Clubsito.dat");
 	 ArrayList<Owner> ownersitos;
 	 try {
 		 FileInputStream fls = new FileInputStream(fl);
@@ -416,7 +416,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	
 	public void serializableOwner() {
 		
-		File fl = new File("Clubsito.dat");
+		File fl = new File("files\\Clubsito.dat");
 		
 		try {
 			FileOutputStream flo = new FileOutputStream(fl);

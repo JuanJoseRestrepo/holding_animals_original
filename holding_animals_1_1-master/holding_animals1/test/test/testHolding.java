@@ -261,9 +261,23 @@ class testHolding {
 	@Test
 	void testBinaryForId() {
 		setupEscenario();
-		hol.ordenarClubesPorId();
+		
 		String msj = hol.searchBinariesForId("222223321");
 		assertEquals(clubsitos.get(4).getIdClub(), msj);
+	} 
+	
+	@Test
+	void testTradicional() {
+		setupEscenario();
+		
+		String msj = hol.searchBinariesForIdCase1("222223321");
+		assertEquals(clubsitos.get(4).getIdClub(), msj);
+	}
+	
+	@Test
+	void testTradicional1() {
+		setupEscenario();
+		
 	}
 	
 

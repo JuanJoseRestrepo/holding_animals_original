@@ -14,7 +14,7 @@ public class Main {
 	
 	public Main() {
 		reader = new Scanner(System.in);
-		system = new Holding("Clubes.csv");
+		system = new Holding("files\\Clubes.csv");
 	}
 	
 	public void showMenu(){
@@ -676,7 +676,7 @@ public class Main {
 			}else{
 				System.out.println("Vuelva pronto!!!");
 				for(Club miC: system.getClubs()) {
-				miC.serializableOwner(); 
+				miC.serializableOwner();  
 			}
 			
 		}
