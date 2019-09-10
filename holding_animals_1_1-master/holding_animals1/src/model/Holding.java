@@ -16,6 +16,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import exceptions.errorIdClubNotFound;
+import exceptions.errorNameNotFound;
+
 
 public class Holding implements Serializable{
 	
@@ -428,11 +431,22 @@ public void ordenateTypeOfAnimals() {
 	}	
 }
 
-public void getMethodsSortWithTypeOfAnimals() {
-	
+public void getMethodsSortWithTypeOfAnimals(String idClubsi) {
+	boolean t = false;
+	try {
 	for (int i = 0; i < clubs.size(); i++) {
+		if(clubs.get(i).getIdClub().equals(idClubsi)) {
 			clubs.get(i).ordenarPorTipoDeAnimal();
+			t = true;
+		}
 	}
+	
+	if(t == false) {
+		throw new errorIdClubNotFound("No valido id");
+	}
+	 }catch(errorIdClubNotFound e) {
+		 e.getCause();
+	 }
 	
 }
 
@@ -456,24 +470,55 @@ public void getMethodsSortWithCode(String idClubsi) {
 }
 }
 	
-public void getMethodsSortWithSecondNames() {
-	
+public void getMethodsSortWithSecondNames(String idClubsi) {
+	boolean t = false;
+	try {
 	for (int i = 0; i < clubs.size(); i++) {
+		if(clubs.get(i).getIdClub().equals(idClubsi)) {
 			clubs.get(i).ordenarPorSegundosNombres();
+			t = true;
 		}
-}
-
-public void getMethodsSortWithName() {
-	for (int i = 0; i < clubs.size(); i++) {
-		
-			clubs.get(i).ordenarPorNombrePrimero();
 	}
+		if(t == false) {
+			throw new errorIdClubNotFound("No valido el id");
+		}
+      }catch(errorIdClubNotFound e) {
+    	  e.getCause();
+      }
 }
 
-public void getMethodsSortWithDates() {
+public void getMethodsSortWithName(String idClubsi) {
+	boolean t = false;
+	
+	try {
 	for (int i = 0; i < clubs.size(); i++) {
-			clubs.get(i).ordenarPorFechas();
+		if(clubs.get(i).getIdClub().equals(idClubsi)) {
+			clubs.get(i).ordenarPorNombrePrimero();
+		}
+	}
+	
+	if(t == false) {
+		throw new errorIdClubNotFound("No valido el id");
+	}
+ }catch(errorIdClubNotFound e) {
+	 e.getCause();
+ }
+}
 
+public void getMethodsSortWithDates(String idClubsi) {
+	boolean t = false;
+	try {
+	for (int i = 0; i < clubs.size(); i++) {
+		if(clubs.get(i).getIdClub().equals(idClubsi)) {
+			clubs.get(i).ordenarPorFechas();
+		}
+	 }
+	
+	if(t == false) {
+		throw new errorIdClubNotFound("No valido el id");
+	}
+	}catch(errorIdClubNotFound e) {
+		e.getCause();
 	}
 }
 
@@ -491,11 +536,23 @@ public Date formatTheDateOfThis(String dateOfThis) {
 	return inicialDate;
 } 
 
-public String mostrarInfo() {
+public String mostrarInfo(String idClubsi) {
 	String msj = " ";
+	boolean t = false;
+	try {
 	for(int i = 0; i < clubs.size();i++) {
+		if(clubs.get(i).getIdClub().equals(idClubsi)) {
 			msj += " " +clubs.get(i).mostrarInfoOrdenado();
 		}
+	}
+	
+	if(t == false) {
+		throw new errorIdClubNotFound("id no valido");
+	}
+	
+	}catch(errorIdClubNotFound e) {
+		e.getCause();
+	}
 	
 	return msj;
 }

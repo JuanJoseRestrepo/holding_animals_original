@@ -5,10 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 import model.Holding;
-import model.errorIdClubNotFound;
 import model.Club;
 
 import org.junit.jupiter.api.Test;
+
+import exceptions.errorIdClubNotFound;
 
 class testHolding {
 	private Holding hol;
@@ -136,6 +137,8 @@ class testHolding {
 		tmp.add(i);
 		hol.setClubs(tmp);
 		hol.ordenarClubesPorId();
+		
+		assertEquals(clubsitos.get((clubsitos.size()-1)).toString(), tmp.get((tmp.size()-1)).toString());
 		
 	    
 		

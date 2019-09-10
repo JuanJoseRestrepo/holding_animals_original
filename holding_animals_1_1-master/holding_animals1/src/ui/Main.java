@@ -382,25 +382,35 @@ public class Main {
 						String idClubistoss = reader.nextLine();
 						
 						system.getMethodsSortWithCode(idClubistoss);
-						System.out.println(system.mostrarInfo());
+						System.out.println(system.mostrarInfo(idClubistoss));
 						
 					}else if(userNumber == 2) {
+						System.out.println("Por favor digite el id del club");
+						String id1 = reader.nextLine();
 						
-						system.getMethodsSortWithName();
-						System.out.println(system.mostrarInfo());
+						system.getMethodsSortWithName(id1);
+						System.out.println(system.mostrarInfo(id1));
 						
 					}else if(userNumber == 3) {
+						System.out.println("Por favor digite el id del club");
+						String id2 = reader.nextLine();
 						
-						system.getMethodsSortWithDates();
-						System.out.println(system.mostrarInfo());
+						system.getMethodsSortWithDates(id2);
+						System.out.println(system.mostrarInfo(id2));
 						
 					}else if(userNumber == 4){
-						system.getMethodsSortWithTypeOfAnimals();
-						System.out.println(system.mostrarInfo());
+						System.out.println("Por favor digite el id del club");
+						String id3 = reader.nextLine();
+						
+						system.getMethodsSortWithTypeOfAnimals(id3);
+						System.out.println(system.mostrarInfo(id3));
 						
 					}else if(userNumber == 5) {
-						system.getMethodsSortWithSecondNames();
-						System.out.println(system.mostrarInfo());
+						System.out.println("Por favor digite el id del club");
+						String id4 = reader.nextLine();
+						
+						system.getMethodsSortWithSecondNames(id4);
+						System.out.println(system.mostrarInfo(id4));
 						
 						
 					}else{
@@ -497,7 +507,7 @@ public class Main {
 	}catch(InputMismatchException e) {
 			System.out.println("Por favor digite una opcion valida" + "  " + e.getClass());
 			reader.nextLine();
-		}
+	}
 			
 			
 		}//finalDelWhile

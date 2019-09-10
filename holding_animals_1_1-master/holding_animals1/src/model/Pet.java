@@ -108,7 +108,7 @@ public class Pet implements Serializable, Comparable<Pet>,Comparator<Pet>  {
 	
 	public int compareBornDayPet(Pet o1) {
 		
-		return formatTheDateOfThis(bornPetDay).compareTo(formatTheDateOfThis(o1.getBornPetDay()));
+		return bornPetDay.compareTo(o1.getBornPetDay());
 		
 	}
 	

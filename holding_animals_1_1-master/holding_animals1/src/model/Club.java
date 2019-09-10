@@ -15,6 +15,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import exceptions.errorIdClubNotFound;
+import exceptions.errorNameNotFound;
+
 public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 
 	/**
@@ -156,13 +159,14 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		for(int i = 0; i < owners.size();i++) {
 			
 			if((owners.get(i).getOwnerNames().equals(nombredelMka)) && (owners.get(i).getOwnerSecondNames().equals(apellidoOwner))){
-				owners.remove(i);
+				owners.remove(owners.get(i));
 			}else {
 				throw new errorNameNotFound("No valido el id");
 			}
 			
 		}
 	}catch(errorNameNotFound e) {
+		System.out.println("No valido el nombre");
 		e.getCause();
 	}
 }
@@ -261,7 +265,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	
 	public int compareOrdenarPorFecha(Club o1) {
 		
-		return formatTheDateOfThis(creationDate).compareTo(formatTheDateOfThis(o1.getCreationDate()));
+		return creationDate.compareTo(o1.getCreationDate());
 		
 	}
 	
