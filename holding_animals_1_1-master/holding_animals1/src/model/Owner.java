@@ -14,6 +14,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import exceptions.errorNoMoreAnimals;
+
 public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner>  {
 
 	/**
@@ -77,7 +79,7 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 		return typeOfAnimalsPrefer;
 	}
 	
-	public void getTypeOfAnimalsPrefer(String typeOfAnimalsPrefer) {
+	public void setTypeOfAnimalsPrefer(String typeOfAnimalsPrefer) {
 		this.typeOfAnimalsPrefer = typeOfAnimalsPrefer;
 	}
 	
@@ -94,7 +96,6 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 		pets.add(new Pet(idPet,petName,gender,typeOfPet,bornPetDay));
 	}
 	
-
 	public String toString() {
 	String msj = "";
 	
@@ -148,7 +149,7 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	
 	
 	public Date formatTheDateOfThis(String dateOfThis) {
-		Date inicialDate;
+		Date inicialDate = null;
 		SimpleDateFormat dateOfThis1 = new SimpleDateFormat("yyyy/MM/dd");
 		
 		try {
@@ -224,19 +225,229 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	
 	public void deletePet(String idPet) {
 		
+		boolean t = false;
+		
+		try {
 		for(int j = 0; j < pets.size();j++) {
 			if(pets.get(j).getIdPet().equals(idPet)) {
 				pets.remove(pets.get(j));
+				t = true;
 			}
 		}
+		
+		if(t == false) {
+			throw new errorNoMoreAnimals("No se pudo agregar");
+		}
+		
+	}catch(errorNoMoreAnimals e) {
+		e.getMessage();
 	}
-	
+}
 	public void deletePetName(String nameClub) {
+		boolean t = false;
+		
+		try {
 		for(int j = 0; j < pets.size();j++) {
 			if(pets.get(j).getPetName().equals(nameClub)) {
 				pets.remove(pets.get(j));
+				t = true;
 			}
 		}
+		
+		if(t == false) {
+			throw new errorNoMoreAnimals("No se pudo eliminar");
+		}
+		
+		}catch(errorNoMoreAnimals e) {
+			e.getMessage();
+		}
+	}
+	
+	public String searchBinariesForIdPet(String idPet) {
+String msj = "";
+		
+		long a = System.currentTimeMillis();
+		ordenarPorIdPet();
+		int inicio = 0;
+		int finales = pets.size() -1;
+		boolean t = false;
+		while(inicio <= finales && !t) {
+			int mitad = (inicio+finales)/2;
+			if(pets.get(mitad).getIdPet().compareTo(idPet) == 0) {
+				t = true;
+			}else if(pets.get(mitad).getIdPet().compareTo(idPet) > 0) {
+				finales = mitad -1;
+			}else {
+				inicio = mitad + 1;
+			}
+		}
+		long b = System.currentTimeMillis();
+		
+		long c = System.currentTimeMillis();
+		
+		boolean findIt = false;
+		
+		for(int i = 0; i < pets.size();i++) {
+			if(pets.get(i).getIdPet().equals(idPet)) {
+				findIt = true;
+			}
+		}
+		
+		long z = System.currentTimeMillis();
+		
+		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesForNamePet(String namePet) {
+		String msj = "";
+		
+		long a = System.currentTimeMillis();
+		ordenarPorIdPet();
+		int inicio = 0;
+		int finales = pets.size() -1;
+		boolean t = false;
+		while(inicio <= finales && !t) {
+			int mitad = (inicio+finales)/2;
+			if(pets.get(mitad).getPetName().compareTo(namePet) == 0) {
+				t = true;
+			}else if(pets.get(mitad).getPetName().compareTo(namePet) > 0) {
+				finales = mitad -1;
+			}else {
+				inicio = mitad + 1;
+			}
+		}
+		long b = System.currentTimeMillis();
+		
+		long c = System.currentTimeMillis();
+		
+		boolean findIt = false;
+		
+		for(int i = 0; i < pets.size();i++) {
+			if(pets.get(i).getPetName().equals(namePet)) {
+				findIt = true;
+			}
+		}
+		
+		long z = System.currentTimeMillis();
+		
+		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesGender(String gender) {
+		String msj = "";
+		
+		long a = System.currentTimeMillis();
+		ordenarPorIdPet();
+		int inicio = 0;
+		int finales = pets.size() -1;
+		boolean t = false;
+		while(inicio <= finales && !t) {
+			int mitad = (inicio+finales)/2;
+			if(pets.get(mitad).getGender().compareTo(gender) == 0) {
+				t = true;
+			}else if(pets.get(mitad).getGender().compareTo(gender) > 0) {
+				finales = mitad -1;
+			}else {
+				inicio = mitad + 1;
+			}
+		}
+		long b = System.currentTimeMillis();
+		
+		long c = System.currentTimeMillis();
+		
+		boolean findIt = false;
+		
+		for(int i = 0; i < pets.size();i++) {
+			if(pets.get(i).getGender().equals(gender)) {
+				findIt = true;
+			}
+		}
+		
+		long z = System.currentTimeMillis();
+		
+		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		
+		return msj; 
+	}
+	
+	public String searchBinaryTypeOfPet(String typeOfPet) {
+		String msj = "";
+		
+		long a = System.currentTimeMillis();
+		ordenarPorIdPet();
+		int inicio = 0;
+		int finales = pets.size() -1;
+		boolean t = false;
+		while(inicio <= finales && !t) {
+			int mitad = (inicio+finales)/2;
+			if(pets.get(mitad).getTypeOfPet().compareTo(typeOfPet) == 0) {
+				t = true;
+			}else if(pets.get(mitad).getTypeOfPet().compareTo(typeOfPet) > 0) {
+				finales = mitad -1;
+			}else {
+				inicio = mitad + 1;
+			}
+		}
+		long b = System.currentTimeMillis();
+		
+		long c = System.currentTimeMillis();
+		
+		boolean findIt = false;
+		
+		for(int i = 0; i < pets.size();i++) {
+			if(pets.get(i).getTypeOfPet().equals(typeOfPet)) {
+				findIt = true;
+			}
+		}
+		
+		long z = System.currentTimeMillis();
+		
+		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesBornDay(String bornDay) {
+		
+String msj = "";
+		
+		long a = System.currentTimeMillis();
+		ordenarPorIdPet();
+		int inicio = 0;
+		int finales = pets.size() -1;
+		boolean t = false;
+		while(inicio <= finales && !t) {
+			int mitad = (inicio+finales)/2;
+			if(pets.get(mitad).getBornPetDay().compareTo(bornDay) == 0) {
+				t = true;
+			}else if(pets.get(mitad).getBornPetDay().compareTo(bornDay) > 0) {
+				finales = mitad -1;
+			}else {
+				inicio = mitad + 1;
+			}
+		}
+		long b = System.currentTimeMillis();
+		
+		long c = System.currentTimeMillis();
+		
+		boolean findIt = false;
+		
+		for(int i = 0; i < pets.size();i++) {
+			if(pets.get(i).getBornPetDay().equals(bornDay)) {
+				findIt = true;
+			}
+		}
+		
+		long z = System.currentTimeMillis();
+		
+		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		
+		return msj; 
+		
 	}
 	
 }

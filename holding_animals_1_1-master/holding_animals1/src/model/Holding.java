@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import exceptions.errorIdClubNotFound;
+import exceptions.errorIdOwner;
 import exceptions.errorNameNotFound;
 
 
@@ -32,7 +33,7 @@ public class Holding implements Serializable{
 		this.archives = archives;
 		clubs = loadFileMocaForClub();
 		onlyOneTimeLoadOwners();
-		/**
+		
 		System.out.println("---------PRIMERO----------");
 		for(Club clubsitos:clubs) {
 			System.out.println("------------------------");
@@ -50,7 +51,7 @@ public class Holding implements Serializable{
 			}
 		}
 		System.out.println("---------FINAL----------");
-		*/
+		
 	}
 	
 	
@@ -121,7 +122,7 @@ public class Holding implements Serializable{
 }
 		
 	public void saveClub() {
-		File fl = new File(archives);
+		File fl = new File(archives); 
 		
 		try {
 			FileWriter fw = new FileWriter(fl.getAbsoluteFile());
@@ -650,20 +651,334 @@ public void ordenarPorGender(String idClubisto,String idOwner) {
 	
 }
 
-public void ordenarPorPetsId() {
+public void ordenarPorPetsId(String idClubsito,String idOwner){
+	boolean t = false;
+	
+	try {
 	for(int i = 0; i < clubs.size();i++) {
-		clubs.get(i).getMethodsPetsId();
+		if(clubs.get(i).getIdClub().equals(idClubsito)) {
+		clubs.get(i).getMethodsPetsId(idOwner);
+		t = true;
+		}
+	  }
+	
+	if(t == false) {
+		throw new errorIdClubNotFound("No se encontro");
+	}
+	
+   }catch(errorIdClubNotFound e) {
+	   e.getMessage();
+   }
+}
+
+public void ordenarTipoDeMascota(String idClubsito,String idOwner){
+	boolean t = false;
+	
+	try {
+	for(int i = 0; i < clubs.size();i++) {
+		if(clubs.get(i).getIdClub().equals(idClubsito)) {
+		clubs.get(i).getMethodsPreferAnimal(idOwner);
+		t = true;
+		}
+	}
+	
+	if(t == false) {
+		throw new errorIdClubNotFound("No se encontro el id");
+	}
+	
+	}catch(errorIdClubNotFound e) {
+		e.getMessage();
 	}
 }
 
-public void ordenarTipoDeMascota() {
-	for(int i = 0; i < clubs.size();i++) {
-		clubs.get(i).getMethodsPreferAnimal();
+//BINARIOS
+public String searchBinariesForNameClub(String nameClub) {
+	String msj = "";
+	
+	long a = System.currentTimeMillis();
+	ordenarClubesPorNombre();
+	int inicio = 0;
+	int finales = clubs.size() -1;
+	boolean t = false;
+	while(inicio <= finales && !t) {
+		int mitad = (inicio+finales)/2;
+		if(clubs.get(mitad).getNameClub().compareTo(nameClub) == 0) {
+			t = true;
+		}else if(clubs.get(mitad).getNameClub().compareTo(nameClub) > 0) {
+			finales = mitad -1;
+		}else {
+			inicio = mitad + 1;
+		}
 	}
+	long b = System.currentTimeMillis();
+	
+	long c = System.currentTimeMillis();
+	
+	boolean findIt = false;
+	
+	for(int i = 0; i < clubs.size();i++) {
+		if(clubs.get(i).getNameClub().equals(nameClub)) {
+			findIt = true;
+		}
+	}
+	
+	long z = System.currentTimeMillis();
+	
+	msj = "Se encontro" + "1." + t + "2. "+ findIt+ " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+	
+	return msj;
+}
+
+public String searchBinariesForId(String idClub) {
+	String msj = "";
+	
+	long a = System.currentTimeMillis();
+	ordenarClubesPorId();
+	int inicio = 0;
+	int finales = clubs.size() -1;
+	boolean t = false;
+	while(inicio <= finales && !t) {
+		int mitad = (inicio+finales)/2;
+		if(clubs.get(mitad).getNameClub().compareTo(idClub) == 0) {
+			t = true;
+		}else if(clubs.get(mitad).getNameClub().compareTo(idClub) > 0) {
+			finales = mitad -1;
+		}else {
+			inicio = mitad + 1;
+		}
+	}
+	long b = System.currentTimeMillis();
+	
+	long c = System.currentTimeMillis();
+	
+	boolean findIt = false;
+	
+	for(int i = 0; i < clubs.size();i++) {
+		if(clubs.get(i).getIdClub().equals(idClub)) {
+			findIt = true;
+		}
+	}
+	
+	long z = System.currentTimeMillis();
+	
+	msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+	
+	return msj; 
+}
+
+public String searchBinariesForDate(String dates) {
+	String msj = "";
+	
+	long a = System.currentTimeMillis();
+	ordenarFechas();
+	int inicio = 0;
+	int finales = clubs.size() -1;
+	boolean t = false;
+	while(inicio <= finales && !t) {
+		int mitad = (inicio+finales)/2;
+		if(clubs.get(mitad).getCreationDate().compareTo(dates) == 0) {
+			t = true;
+		}else if(clubs.get(mitad).getCreationDate().compareTo(dates) > 0) {
+			finales = mitad -1;
+		}else {
+			inicio = mitad + 1;
+		}
+	}
+	long b = System.currentTimeMillis();
+	
+	long c = System.currentTimeMillis();
+	
+	boolean findIt = false;
+	
+	for(int i = 0; i < clubs.size();i++) {
+		if(clubs.get(i).getCreationDate().equals(dates)) {
+			findIt = true;
+		}
+	}
+	
+	long z = System.currentTimeMillis();
+	
+	msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+	
+	return msj; 
+}
+
+public String searchBinariesForTypeOfAnimals(String typeOfAnimals) {
+	String msj = "";
+	
+	long a = System.currentTimeMillis();
+	ordenateTypeOfAnimals();
+	int inicio = 0;
+	int finales = clubs.size() -1;
+	boolean t = false;
+	while(inicio <= finales && !t) {
+		int mitad = (inicio+finales)/2;
+		if(clubs.get(mitad).getTypeOfAnimals().compareTo(typeOfAnimals) == 0) {
+			t = true;
+		}else if(clubs.get(mitad).getTypeOfAnimals().compareTo(typeOfAnimals) > 0) {
+			finales = mitad -1;
+		}else {
+			inicio = mitad + 1;
+		}
+	}
+	long b = System.currentTimeMillis();
+	
+	long c = System.currentTimeMillis();
+	
+	boolean findIt = false;
+	
+	for(int i = 0; i < clubs.size();i++) {
+		if(clubs.get(i).getTypeOfAnimals().equals(typeOfAnimals)) {
+			findIt = true;
+		}
+	}
+	
+	long z = System.currentTimeMillis();
+	
+	msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+	
+	return msj; 
+}
+
+public void getBinaryOfIdOwner(String idClub,String idOwner) {
+	
+}
+
+public void getBinaryOfOwnerNames(String idClub,String idOwner) {
+	
+}
+
+public void getBinaryOfOwnersSecondNames(String idClub,String idOwner) {
+	
+}
+
+public void getBinaryOfTypeOfAnimalsPrefer(String idClub,String idOwner) {
+	
 }
 
 
+
+public String getBinaryOfBornDay1(String idClub,String creationDate ) {
+	String msj = "";
+	boolean t = false;
+	try {
 		
+		for(int i = 0; i < clubs.size();i++) {
+			if(clubs.get(i).getCreationDate().equals(idClub)) {
+				msj += clubs.get(i).searchBinariesForBornDay(creationDate);
+				t = true;
+			}
+		}
+	if(t == false) {
+		throw new errorIdClubNotFound("No se encontro");
+	}
+		
+	}catch(errorIdClubNotFound e) {
+		e.getMessage();
+	}
+	return msj;
+}
+
+public String getBinaryOfIdOwner2(String idClub,String idOwner) {
+	String msj = "";
+	boolean t = false;
+	try {
+		
+		for(int i = 0; i < clubs.size();i++) {
+			if(clubs.get(i).getIdClub().equals(idClub)) {
+				msj = clubs.get(i).searchBinariesIdOwner(idOwner);
+				t = true;
+			}
+		}
+	if(t == false) {
+		throw new errorIdClubNotFound("No se encontro");
+	}
+		
+	}catch(errorIdClubNotFound e) {
+		e.getMessage();
+	}
+	return msj;
+}
+
+public String getBinaryOfOwnerNames3(String idClub,String firstName) {
+	String msj = "";
+	boolean t = false;
+	try {
+		for(int i = 0; i < clubs.size();i++) {
+			if(clubs.get(i).getIdClub().equals(idClub)) {
+				msj = clubs.get(i).searchBinariesForOwnersNames(firstName);
+				t = true;
+			}
+		}
+		if(t == false) {
+			throw new errorIdOwner("No valido");
+		}
+	}catch(errorIdOwner e) {
+		e.getMessage();
+	}
+	return msj;
+}
+
+public String getBinaryOfOwnersSecondNames4(String idClub,String secondNames) {
+	String msj = "";
+	
+	boolean t = false;
+	try {
+		for(int i = 0; i < clubs.size();i++) {
+			if(clubs.get(i).getIdClub().equals(idClub)) {
+				msj = clubs.get(i).searchBinariesForSecondNames(secondNames);
+				t = true;
+			}
+		}
+		if(t == false) {
+			throw new errorIdOwner("No valido");
+		}
+	}catch(errorIdOwner e) {
+		e.getMessage();
+	}
+	return msj;
+}
+
+public String getBinaryOfTypeOfAnimalsPrefer5(String idClub,String typeOfAnimals) {
+
+	String msj = "";
+	boolean t = false;
+	try {
+		for(int i = 0; i < clubs.size();i++) {
+			if(clubs.get(i).getIdClub().equals(idClub)) {
+				msj = clubs.get(i).searchBinariesForTypeOfAnimalsPrefer(typeOfAnimals);
+				t = true;
+			}
+		}
+		if(t == false) {
+			throw new errorIdOwner("No valido");
+		}
+	}catch(errorIdOwner e) {
+		e.getMessage();
+	}
+	return msj;
+}
+
+public String getBinaryOfBornDay6(String idClub,String bornDay) {
+
+	String msj = "";
+	boolean t = false;
+	try {
+		for(int i = 0; i < clubs.size();i++) {
+			if(clubs.get(i).getIdClub().equals(idClub)) {
+				msj = clubs.get(i).searchBinariesForBornDay(bornDay);
+				t = true;
+			}
+		}
+		if(t == false) {
+			throw new errorIdOwner("No valido");
+		}
+	}catch(errorIdOwner e) {
+		e.getMessage();
+	}
+	return msj;
+}
+
 }//Final
 	
 

@@ -31,17 +31,18 @@ public class Main {
 		System.out.println("7.Mostrar la informacion ordenada de los clubes");
 		System.out.println("8.Mostrar la informacion ordenada de los owners");
 		System.out.println("9. Mostrar la informacion ordenada de los pets");
-		System.out.println("10.Salir del programa");
+		System.out.println("10.Mostrar tiempo de ejecucion por binaria");
+		System.out.println("11.Salir del programa");
 		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 
 		
-		while(inputUser != 10) {
+		while(inputUser != 11) {
 			try {
 			inputUser = reader.nextInt();
 			reader.nextLine();
 			
-			if(inputUser > 11) {
+			if(inputUser > 12) {
 				throw new errorRank("ada");
 			}
 			
@@ -156,6 +157,10 @@ public class Main {
 					userImput1 = reader.nextInt();
 					reader.nextLine();
 					
+					if(userImput1 > 4) {
+						throw new errorRank("ada");
+					}
+					
 					if(userImput1 == 1) {
 						System.out.println("Digite el id del club");
 						String idClub = reader.nextLine();
@@ -180,9 +185,12 @@ public class Main {
 						System.out.println("7.Mostrar la informacion ordenada de los clubes");
 						System.out.println("8.Mostrar la informacion ordenada de los owners");
 						System.out.println("9. Mostrar la informacion ordenada de los pets");
-						System.out.println("10.Salir del programa");
+						System.out.println("10.Mostrar tiempo de ejecucion por binaria");
+						System.out.println("11.Salir del programa");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+
+						
 					}	
 				}
 				 
@@ -199,7 +207,11 @@ public class Main {
 				while(userImput2 != 3) {
 					userImput2 = reader.nextInt();
 					reader.nextLine();
-				
+					
+					if(userImput2 > 4) {
+						throw new errorRank("ada");
+					}
+					
 				if(userImput2 == 1) {
 				System.out.println("Digite el id del club");
 				String idClubsito = reader.nextLine();
@@ -231,7 +243,8 @@ public class Main {
 						System.out.println("7.Mostrar la informacion ordenada de los clubes");
 						System.out.println("8.Mostrar la informacion ordenada de los owners");
 						System.out.println("9. Mostrar la informacion ordenada de los pets");
-						System.out.println("10.Salir del programa");
+						System.out.println("10.Mostrar tiempo de ejecucion por binaria");
+						System.out.println("11.Salir del programa");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 					}
@@ -250,6 +263,9 @@ public class Main {
 					userNumber3 = reader.nextInt();
 					reader.nextLine();
 					
+					if(userNumber3 > 4) {
+						throw new errorRank("ada");
+					}
 					if(userNumber3 == 1) {
 						System.out.println("Digite el id del Club");
 						String idClubsitos1 = reader.nextLine();
@@ -274,6 +290,7 @@ public class Main {
 						system.delatedWithClubWithPetid(idClubsixos, idOwnerss, idPetsito);
 						
 					}else {
+						
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 						System.out.println("1.Crear club");
@@ -285,9 +302,12 @@ public class Main {
 						System.out.println("7.Mostrar la informacion ordenada de los clubes");
 						System.out.println("8.Mostrar la informacion ordenada de los owners");
 						System.out.println("9. Mostrar la informacion ordenada de los pets");
-						System.out.println("10.Salir del programa");
+						System.out.println("10.Mostrar tiempo de ejecucion por binaria");
+						System.out.println("11.Salir del programa");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+
+						
 					}
 					
 					
@@ -315,6 +335,10 @@ public class Main {
 						try {
 						userNumber = reader.nextInt();
 						reader.nextLine(); 
+						
+						if(userNumber > 4) {
+							throw new errorRank("ada");
+						}
 						
 						if(userNumber == 1) { 
 											
@@ -350,10 +374,12 @@ public class Main {
 							System.out.println("7.Mostrar la informacion ordenada de los clubes");
 							System.out.println("8.Mostrar la informacion ordenada de los owners");
 							System.out.println("9. Mostrar la informacion ordenada de los pets");
-							System.out.println("10.Salir del programa");
+							System.out.println("10.Mostrar tiempo de ejecucion por binaria");
+							System.out.println("11.Salir del programa");
 							System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 							System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-	
+
+							
 						}
 						
 					}catch(InputMismatchException e) {
@@ -384,6 +410,10 @@ public class Main {
 					try {
 					userNumber = reader.nextInt();
 					reader.nextLine(); 
+					
+					if(userNumber > 7) {
+						throw new errorRank("ada");
+					}
 					
 					if(userNumber == 1) {
 						System.out.println("Por favor digite el id del club");
@@ -434,10 +464,12 @@ public class Main {
 						System.out.println("7.Mostrar la informacion ordenada de los clubes");
 						System.out.println("8.Mostrar la informacion ordenada de los owners");
 						System.out.println("9. Mostrar la informacion ordenada de los pets");
-						System.out.println("10.Salir del programa");
+						System.out.println("10.Mostrar tiempo de ejecucion por binaria");
+						System.out.println("11.Salir del programa");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 
+						
 					}
 					
 				}catch(InputMismatchException e) {
@@ -465,22 +497,56 @@ public class Main {
 					userImput4 = reader.nextInt();
 					reader.nextLine();
 					
+					if(userImput4 > 7) {
+						throw new errorRank("ada");
+					}
+					
 					if(userImput4 == 1) {
-						system.ordenarPorPetsId();
-						System.out.println(system.mostrarInfoOrdenado3());
+						System.out.println("Por favor digite el id del club");
+						String id = reader.nextLine();
+						
+						System.out.println("Por favor digite el id del owner");
+						String id1 = reader.nextLine();
+						
+						system.ordenarPorPetsId(id,id1);
+						System.out.println(system.mostrarInfoOrdenado3(id,id1));
 					}else if(userImput4 == 2) {
-						system.ordenarPorNombrePets();
-						System.out.println(system.mostrarInfoOrdenado3());
+						System.out.println("Por favor digite el id del club");
+						String id3 = reader.nextLine();
+						
+						System.out.println("Por favor digite el id del owner");
+						String id4 = reader.nextLine();
+						
+						system.ordenarPorNombrePets(id3,id4);
+						System.out.println(system.mostrarInfoOrdenado3(id3,id4));
 					}else if(userImput4 == 3) {
-						system.ordenarPorDates();
-						System.out.println(system.mostrarInfoOrdenado3());
+						System.out.println("Por favor digite el id del club");
+						String id5 = reader.nextLine();
+						
+						System.out.println("Por favor digite el id del owner");
+						String id6 = reader.nextLine();
+						
+						system.ordenarPorDates(id5,id6);
+						System.out.println(system.mostrarInfoOrdenado3(id5,id6));
 					}else if(userImput4 == 4) {
-						system.ordenarTipoDeMascota();
-						System.out.println(system.mostrarInfoOrdenado3());
+						System.out.println("Por favor digite el id del club");
+						String id7 = reader.nextLine();
+						
+						System.out.println("Por favor digite el id del owner");
+						String id8 = reader.nextLine();
+						
+						system.ordenarTipoDeMascota(id7,id8);
+						System.out.println(system.mostrarInfoOrdenado3(id7,id8));
 						
 					}else if(userImput4 == 5) {
-						system.ordenarPorGender();
-						System.out.println(system.mostrarInfoOrdenado3());
+						System.out.println("Por favor digite el id del club");
+						String id9 = reader.nextLine();
+						
+						System.out.println("Por favor digite el id del owner");
+						String id10 = reader.nextLine();
+						
+						system.ordenarPorGender(id9,id10);
+						System.out.println(system.mostrarInfoOrdenado3(id9,id10));
 					}else {
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
@@ -493,10 +559,12 @@ public class Main {
 						System.out.println("7.Mostrar la informacion ordenada de los clubes");
 						System.out.println("8.Mostrar la informacion ordenada de los owners");
 						System.out.println("9. Mostrar la informacion ordenada de los pets");
-						System.out.println("10.Salir del programa");
+						System.out.println("10.Mostrar tiempo de ejecucion por binaria");
+						System.out.println("11.Salir del programa");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 
+						
 					}
 					
 					
@@ -505,7 +573,105 @@ public class Main {
 				
 				
 				
-			}else {
+			}else if(inputUser == 10) {
+				int usuario1 = 0;
+				
+				System.out.println("1.Nombre club");
+				
+				while(usuario1 != 15) {
+					usuario1 = reader.nextInt();
+					reader.nextLine();
+					
+					if(usuario1 > 16) {
+						throw new errorRank("Se salio");
+					}
+					
+					if(usuario1 == 1) {
+						System.out.println("Por favor digite el nombre del club");
+						String name1 = reader.nextLine();
+						
+						System.out.println(system.searchBinariesForNameClub(name1));
+						
+						
+					}else if(usuario1 == 2) {
+						System.out.println("Por favor digite el id del club");
+						String name2 = reader.nextLine();
+						
+						System.out.println(system.searchBinariesForId(name2));
+						
+					}else if(usuario1 == 3) { 
+						System.out.println("Por favor digite la fecha del club");
+						String name3 = reader.nextLine();
+						
+						System.out.println(system.searchBinariesForDate(name3));
+						
+					}else if(usuario1 == 4) {
+						System.out.println("Por favor digite el tipo de animal del club");
+						String name4 = reader.nextLine();
+						
+						System.out.println(system.searchBinariesForTypeOfAnimals(name4)); 
+						
+					}else if(usuario1 == 5) {
+						
+						System.out.println("Por favor digite el tipo de animal del club");
+						String name5 = reader.nextLine();
+						
+						System.out.println(system.searchBinariesForTypeOfAnimals(name5));
+						
+					}else if(usuario1 == 6) {
+						System.out.println("Por favor digite la fecha de creacion");
+						String name6 = reader.nextLine();
+						
+						System.out.println("Por favor digite el id del Club");
+						String name7 = reader.nextLine();
+						
+						System.out.println(system.getBinaryOfBornDay1(name6, name7));
+						
+					}else if(usuario1 == 7) {
+						System.out.println("Por favor digite el id del club");
+						String name8 = reader.nextLine();
+						
+						System.out.println("Por favor digite el idOwner del Club");
+						String name9 = reader.nextLine();
+						
+						System.out.println(system.getBinaryOfIdOwner2(name8, name9));
+					}else if(usuario1 == 8) {
+						
+					}else if(usuario1 == 9) {
+						
+					}else if(usuario1 == 10) {
+						
+					}else if(usuario1 == 11) {
+						
+					}else if(usuario1 == 12) {
+						
+					}else if(usuario1 == 13) {
+						
+					}else if(usuario1 == 14) {
+						
+					}else {
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("1.Crear club");
+						System.out.println("2.Crear dueño");
+						System.out.println("3.Crear mascota");
+						System.out.println("4.Eliminas el clubsito");
+						System.out.println("5.Eliminar al dueño :O");
+						System.out.println("6.Eliminar a la mascota");
+						System.out.println("7.Mostrar la informacion ordenada de los clubes");
+						System.out.println("8.Mostrar la informacion ordenada de los owners");
+						System.out.println("9. Mostrar la informacion ordenada de los pets");
+						System.out.println("10.Mostrar tiempo de ejecucion por binaria");
+						System.out.println("11.Salir del programa");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+
+						
+					}
+					
+				}
+				
+			}else{
 				System.out.println("Vuelva pronto!!!");
 				for(Club miC: system.getClubs()) {
 				miC.serializableOwner(); 

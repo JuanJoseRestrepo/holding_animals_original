@@ -139,6 +139,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 				owners.get(i).addAnimals(idPet, petName, gender, typeOfPet, bornPetDay);
 				t = true;
 			}
+			
 		}
 		
 		if(t == false) {
@@ -458,24 +459,60 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	 }
 	}
 	
-	public void getMethodsPetsId() {
+	public void getMethodsPetsId(String idOwner) {
+		
+		boolean t = false;
+		
+		try {
 		for(int j = 0; j < owners.size();j++) {
+			if(owners.get(j).getIdOwner().equals(idOwner)){
 			owners.get(j).ordenarPorIdPet();
+			t = true;
+			}
 		}
-	}
-	
-	public void getMethodsGender() {
 		
+		if(t == false) {
+			throw new errorIdOwner("No se encontro");
+		}
+		
+	}catch(errorIdOwner e) {
+		e.getMessage();
+	}
+}
+	
+	public void getMethodsGender(String idOwner) {
+		boolean t = false;
+		try {
 		for(int i = 0; i < owners.size();i++) {
+			if(owners.get(i).getIdOwner().equals(idOwner)) {
 			owners.get(i).ordenarPorGenero();
+			t = true;
+			}
 		}
 		
+		if(t == false) {
+			throw new errorIdOwner("No se encontro el id del owner");
+		}
+		
+		}catch(errorIdOwner e) {
+			e.getMessage();
+		}
 	}
 	
-	public void getMethodsPreferAnimal() {
-		
+	public void getMethodsPreferAnimal(String idOwner) {
+		boolean t = false;
+		try {
 		for(int i = 0; i < owners.size();i++) {
+			if(owners.get(i).getIdOwner().equals(idOwner)) {
 			owners.get(i).ordenarPorTipoDeAnimalElPet();
+			t = true;
+		}
+	}
+		if(t == false) {
+			throw new errorIdOwner("La id no es valida");
+		}
+		}catch(errorIdOwner e) {
+			e.getMessage();
 		}
 		
 	}
@@ -497,5 +534,190 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		e.getMessage();
 	}
 }
+	//BINARIOS
+	public String searchBinariesIdOwner(String idOwner) {
+		String msj = "";
+		
+		long a = System.currentTimeMillis();
+		ordenarPorIdOwner();
+		int inicio = 0;
+		int finales = owners.size() -1;
+		boolean t = false;
+		while(inicio <= finales && !t) {
+			int mitad = (inicio+finales)/2;
+			if(owners.get(mitad).getIdOwner().compareTo(idOwner) == 0) {
+				t = true;
+			}else if(owners.get(mitad).getIdOwner().compareTo(idOwner) > 0) {
+				finales = mitad -1;
+			}else {
+				inicio = mitad + 1;
+			}
+		}
+		long b = System.currentTimeMillis();
+		
+		long c = System.currentTimeMillis();
+		
+		boolean findIt = false;
+		
+		for(int i = 0; i < owners.size();i++) {
+			if(owners.get(i).getIdOwner().equals(idOwner)) {
+				findIt = true;
+			}
+		}
+		
+		long z = System.currentTimeMillis();
+		
+		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesForOwnersNames(String ownerNames) {
+		String msj = "";
+		
+		long a = System.currentTimeMillis();
+		ordenarPorNombrePrimero();
+		int inicio = 0;
+		int finales = owners.size() -1;
+		boolean t = false;
+		while(inicio <= finales && !t) {
+			int mitad = (inicio+finales)/2;
+			if(owners.get(mitad).getOwnerNames().compareTo(ownerNames) == 0) {
+				t = true;
+			}else if(owners.get(mitad).getOwnerNames().compareTo(ownerNames) > 0) {
+				finales = mitad -1;
+			}else {
+				inicio = mitad + 1;
+			}
+		}
+		long b = System.currentTimeMillis();
+		
+		long c = System.currentTimeMillis();
+		
+		boolean findIt = false;
+		
+		for(int i = 0; i < owners.size();i++) {
+			if(owners.get(i).getOwnerNames().equals(ownerNames)) {
+				findIt = true;
+			}
+		}
+		
+		long z = System.currentTimeMillis();
+		
+		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesForSecondNames(String secondNames) {
+String msj = "";
+		
+		long a = System.currentTimeMillis();
+		ordenarPorSegundosNombres();
+		int inicio = 0;
+		int finales = owners.size() -1;
+		boolean t = false;
+		while(inicio <= finales && !t) {
+			int mitad = (inicio+finales)/2;
+			if(owners.get(mitad).getOwnerSecondNames().compareTo(secondNames) == 0) {
+				t = true;
+			}else if(owners.get(mitad).getOwnerSecondNames().compareTo(secondNames) > 0) {
+				finales = mitad -1;
+			}else {
+				inicio = mitad + 1;
+			}
+		}
+		long b = System.currentTimeMillis();
+		
+		long c = System.currentTimeMillis();
+		
+		boolean findIt = false;
+		
+		for(int i = 0; i < owners.size();i++) {
+			if(owners.get(i).getOwnerSecondNames().equals(secondNames)) {
+				findIt = true;
+			}
+		}
+		
+		long z = System.currentTimeMillis();
+		
+		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesForTypeOfAnimalsPrefer(String typeOfAnimals1) {
+		String msj = "";
+		
+		long a = System.currentTimeMillis();
+		ordenarPorTipoDeAnimal();
+		int inicio = 0;
+		int finales = owners.size() -1;
+		boolean t = false;
+		while(inicio <= finales && !t) {
+			int mitad = (inicio+finales)/2;
+			if(owners.get(mitad).getTypeOfAnimalsPrefer().compareTo(typeOfAnimals1) == 0) {
+				t = true;
+			}else if(owners.get(mitad).getTypeOfAnimalsPrefer().compareTo(typeOfAnimals1) > 0) {
+				finales = mitad -1;
+			}else {
+				inicio = mitad + 1;
+			}
+		}
+		long b = System.currentTimeMillis();
+		
+		long c = System.currentTimeMillis();
+		
+		boolean findIt = false;
+		
+		for(int i = 0; i < owners.size();i++) {
+			if(owners.get(i).getTypeOfAnimalsPrefer().equals(typeOfAnimals1)) {
+				findIt = true;
+			}
+		}
+		
+		long z = System.currentTimeMillis();
+		
+		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesForBornDay(String bornDay) {
+		String msj = "";
+		
+		long a = System.currentTimeMillis();
+		ordenarPorFechas();
+		int inicio = 0;
+		int finales = owners.size() -1;
+		boolean t = false;
+		while(inicio <= finales && !t) {
+			int mitad = (inicio+finales)/2;
+			if(owners.get(mitad).getBornDay().compareTo(bornDay) == 0) {
+				t = true;
+			}else if(owners.get(mitad).getBornDay().compareTo(bornDay) > 0) {
+				finales = mitad -1;
+			}else {
+				inicio = mitad + 1;
+			}
+		}
+		long b = System.currentTimeMillis();
+		
+		long c = System.currentTimeMillis();
+		
+		boolean findIt = false;
+		
+		for(int i = 0; i < owners.size();i++) {
+			if(owners.get(i).getBornDay().equals(bornDay)) {
+				findIt = true;
+			}
+		}
+		
+		long z = System.currentTimeMillis();
+		
+		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		
+		return msj; 
+	}
 			
 }//finalDeLaClase
