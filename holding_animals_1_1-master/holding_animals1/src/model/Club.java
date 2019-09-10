@@ -128,16 +128,21 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	 * 
 	 */
 	public void searchForTheOwner(String idClient, String idPet,String petName, String gender,String typeOfPet,String bornPetDay) {
-		
+		boolean t = false;
 		try {
 		for (int i = 0; i < owners.size(); i++){ 
 			if(owners.get(i).getIdOwner().equals(idClient)) {
 				owners.get(i).addAnimals(idPet, petName, gender, typeOfPet, bornPetDay);
-			}else {
-				throw new errorIdClubNotFound("No valido el id");
+				t = true;
 			}
 		}
+		
+		if(t == false) {
+			throw new errorIdClubNotFound("No encontro el id del cliente");
+		}
+		
 	}catch(errorIdClubNotFound e) {
+		System.out.println("No encontro el id del cliente");
 		e.getCause();
 	}
 }
@@ -297,8 +302,8 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 			owners.set(indice,temp);
 			
 		}
-		
 	}
+	
 	
 	public void ordenarPorNombrePrimero() {
 		for(int i = 1; i < owners.size();i++) {

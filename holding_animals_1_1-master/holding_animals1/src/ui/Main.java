@@ -378,8 +378,10 @@ public class Main {
 					reader.nextLine(); 
 					
 					if(userNumber == 1) {
-
-						system.getMethodsSortWithCode();
+						System.out.println("Por favor digite el id del club");
+						String idClubistoss = reader.nextLine();
+						
+						system.getMethodsSortWithCode(idClubistoss);
 						System.out.println(system.mostrarInfo());
 						
 					}else if(userNumber == 2) {
@@ -488,7 +490,7 @@ public class Main {
 			}else {
 				System.out.println("Vuelva pronto!!!");
 				for(Club miC: system.getClubs()) {
-				miC.serializableOwner();
+				miC.serializableOwner(); 
 			}
 			
 		}

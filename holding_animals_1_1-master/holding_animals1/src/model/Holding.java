@@ -29,7 +29,7 @@ public class Holding implements Serializable{
 		this.archives = archives;
 		clubs = loadFileMocaForClub();
 		onlyOneTimeLoadOwners();
-
+		/**
 		System.out.println("---------PRIMERO----------");
 		for(Club clubsitos:clubs) {
 			System.out.println("------------------------");
@@ -43,11 +43,11 @@ public class Holding implements Serializable{
 					System.out.println("*************************");
 					System.out.println(pet.toString());
 					System.out.println("*************************");
-
 				}
 			}
 		}
 		System.out.println("---------FINAL----------");
+		*/
 	}
 	
 	
@@ -100,7 +100,6 @@ public class Holding implements Serializable{
 			if(clubs.get(i).getIdClub().equals(idClub)) {
 				clubs.get(i).addOwners(idOwner,ownerNames,ownerSecondNames,typeOfAnimalsPrefer,bornDay);
 				 t = true;
-				clubs.get(i).serializableOwner();
 				}
 			}
 		
@@ -283,14 +282,6 @@ public class Holding implements Serializable{
 		
 	}
 	
-		
-	public String toString() {
-		String msj = "";
-		
-		return msj;
-	}
-		
-	
 	
 	public void ordenarClubesPorId() {
 		
@@ -308,7 +299,7 @@ public class Holding implements Serializable{
 	}
 	
 	public void ordenarClubesPorNombre() {
-		
+		 
 		for (int i = 0; i < clubs.size(); i++) {
 			Club menor = clubs.get(i);
 			int posicion = i;
@@ -445,11 +436,24 @@ public void getMethodsSortWithTypeOfAnimals() {
 	
 }
 
-public void getMethodsSortWithCode() {
+public void getMethodsSortWithCode(String idClubsi) {
 	
+	boolean t = false; 
+	try{
 	for (int i = 0; i < clubs.size(); i++) {
+		if(clubs.get(i).getIdClub().equals(idClubsi)) {
 			clubs.get(i).ordenarPorIdOwner();
+			t = true;
 		}
+	}
+	
+	if(t == false) {
+		throw new errorIdClubNotFound("No se enonctro");
+	}
+	
+}catch(errorIdClubNotFound e) {
+	e.getCause();
+}
 }
 	
 public void getMethodsSortWithSecondNames() {
