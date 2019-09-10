@@ -537,6 +537,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	//BINARIOS
 	public String searchBinariesIdOwner(String idOwner) {
 		String msj = "";
+		String object = "";
 		
 		long a = System.currentTimeMillis();
 		ordenarPorIdOwner();
@@ -547,6 +548,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 			int mitad = (inicio+finales)/2;
 			if(owners.get(mitad).getIdOwner().compareTo(idOwner) == 0) {
 				t = true;
+				object = owners.get(mitad).getIdOwner();
 			}else if(owners.get(mitad).getIdOwner().compareTo(idOwner) > 0) {
 				finales = mitad -1;
 			}else {
@@ -555,6 +557,15 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		}
 		long b = System.currentTimeMillis();
 		
+		msj = "Se encontro" + "1. " + object + "2." + t + " " + "El tiempo binario de uno:" + " " + (b-a);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesIdOwnerCase1(String idOwner) {
+		String msj = "";
+		String object = "";
+		
 		long c = System.currentTimeMillis();
 		
 		boolean findIt = false;
@@ -562,18 +573,21 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		for(int i = 0; i < owners.size();i++) {
 			if(owners.get(i).getIdOwner().equals(idOwner)) {
 				findIt = true;
+				object += owners.get(i).getIdOwner();
 			}
 		}
 		
 		long z = System.currentTimeMillis();
 		
-		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 		
 		return msj; 
+		
 	}
 	
 	public String searchBinariesForOwnersNames(String ownerNames) {
 		String msj = "";
+		String object = "";
 		
 		long a = System.currentTimeMillis();
 		ordenarPorNombrePrimero();
@@ -584,6 +598,8 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 			int mitad = (inicio+finales)/2;
 			if(owners.get(mitad).getOwnerNames().compareTo(ownerNames) == 0) {
 				t = true;
+				object = owners.get(mitad).getOwnerNames();
+				
 			}else if(owners.get(mitad).getOwnerNames().compareTo(ownerNames) > 0) {
 				finales = mitad -1;
 			}else {
@@ -591,6 +607,16 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 			}
 		}
 		long b = System.currentTimeMillis();
+
+		
+		msj = "Se encontro" + "1. " + object +" " + t + " " + "El tiempo binario de uno:" + " " + (b-a);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesForOwnersNamesCase1(String ownerNames) {
+		String msj = "";
+		String object = "";
 		
 		long c = System.currentTimeMillis();
 		
@@ -599,19 +625,21 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		for(int i = 0; i < owners.size();i++) {
 			if(owners.get(i).getOwnerNames().equals(ownerNames)) {
 				findIt = true;
+				object = owners.get(i).getOwnerNames();
 			}
 		}
 		
 		long z = System.currentTimeMillis();
 		
-		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 		
 		return msj; 
+		
 	}
 	
 	public String searchBinariesForSecondNames(String secondNames) {
-String msj = "";
-		
+		String msj = "";
+		String object = "";
 		long a = System.currentTimeMillis();
 		ordenarPorSegundosNombres();
 		int inicio = 0;
@@ -621,6 +649,8 @@ String msj = "";
 			int mitad = (inicio+finales)/2;
 			if(owners.get(mitad).getOwnerSecondNames().compareTo(secondNames) == 0) {
 				t = true;
+				object = owners.get(mitad).getIdOwner();
+				
 			}else if(owners.get(mitad).getOwnerSecondNames().compareTo(secondNames) > 0) {
 				finales = mitad -1;
 			}else {
@@ -628,6 +658,15 @@ String msj = "";
 			}
 		}
 		long b = System.currentTimeMillis();
+	
+		msj = "Se encontro" + "1. " + t +"2." + object + " " + "El tiempo binario de uno:" + " " + (b-a);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesForSecondNamesCase1(String secondNames) {
+		String msj = "";
+		String object = "";
 		
 		long c = System.currentTimeMillis();
 		
@@ -636,19 +675,21 @@ String msj = "";
 		for(int i = 0; i < owners.size();i++) {
 			if(owners.get(i).getOwnerSecondNames().equals(secondNames)) {
 				findIt = true;
+				object = owners.get(i).getOwnerSecondNames();
 			}
 		}
 		
 		long z = System.currentTimeMillis();
 		
-		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 		
 		return msj; 
+	
 	}
 	
 	public String searchBinariesForTypeOfAnimalsPrefer(String typeOfAnimals1) {
 		String msj = "";
-		
+		String object = "";
 		long a = System.currentTimeMillis();
 		ordenarPorTipoDeAnimal();
 		int inicio = 0;
@@ -658,6 +699,7 @@ String msj = "";
 			int mitad = (inicio+finales)/2;
 			if(owners.get(mitad).getTypeOfAnimalsPrefer().compareTo(typeOfAnimals1) == 0) {
 				t = true;
+				object = owners.get(mitad).getTypeOfAnimalsPrefer();
 			}else if(owners.get(mitad).getTypeOfAnimalsPrefer().compareTo(typeOfAnimals1) > 0) {
 				finales = mitad -1;
 			}else {
@@ -666,26 +708,37 @@ String msj = "";
 		}
 		long b = System.currentTimeMillis();
 		
+		
+		msj = "Se encontro" + "1. " + t +"2." + object + " " + "El tiempo binario de uno:" + " " + (b-a);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesForTypeOfAnimalsPreferCase1(String typeOfAnimals1) {
+		String msj = "";
+		String object = "";
+		
 		long c = System.currentTimeMillis();
 		
 		boolean findIt = false;
 		
 		for(int i = 0; i < owners.size();i++) {
 			if(owners.get(i).getTypeOfAnimalsPrefer().equals(typeOfAnimals1)) {
+				object = owners.get(i).getTypeOfAnimalsPrefer();
 				findIt = true;
 			}
 		}
 		
 		long z = System.currentTimeMillis();
 		
-		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 		
 		return msj; 
 	}
 	
-	public String searchBinariesForBornDay(String bornDay) {
+	public String searchBinariesForBornDay(String bornDay) { 
 		String msj = "";
-		
+		String object = "";
 		long a = System.currentTimeMillis();
 		ordenarPorFechas();
 		int inicio = 0;
@@ -695,13 +748,24 @@ String msj = "";
 			int mitad = (inicio+finales)/2;
 			if(owners.get(mitad).getBornDay().compareTo(bornDay) == 0) {
 				t = true;
+				object = owners.get(mitad).getBornDay();
+				
 			}else if(owners.get(mitad).getBornDay().compareTo(bornDay) > 0) {
 				finales = mitad -1;
 			}else {
 				inicio = mitad + 1;
-			}
+			} 
 		}
 		long b = System.currentTimeMillis();
+
+		msj = "Se encontro" + "1. " + t +"2." + object + " " + "El tiempo binario de uno:" + " " + (b-a);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesForBornDayCase1(String bornDay) {
+		String msj = "";
+		String object = "";
 		
 		long c = System.currentTimeMillis();
 		
@@ -710,14 +774,16 @@ String msj = "";
 		for(int i = 0; i < owners.size();i++) {
 			if(owners.get(i).getBornDay().equals(bornDay)) {
 				findIt = true;
+				object = owners.get(i).getBornDay();
 			}
 		}
 		
 		long z = System.currentTimeMillis();
 		
-		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 		
 		return msj; 
+		
 	}
 			
 }//finalDeLaClase

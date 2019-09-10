@@ -452,7 +452,7 @@ public class Main {
 						
 						
 					}else{
-						
+						 
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 						System.out.println("1.Crear club");
@@ -590,6 +590,8 @@ public class Main {
 						System.out.println("Por favor digite el nombre del club");
 						String name1 = reader.nextLine();
 						
+						System.out.println(system.searchBinariesForNameClub(name1));
+						System.out.println("--------------------------------------");
 						System.out.println(system.searchBinariesForNameClub(name1));
 						
 						

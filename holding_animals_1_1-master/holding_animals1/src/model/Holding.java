@@ -350,7 +350,7 @@ public class Holding implements Serializable{
 					clubs.set(j+1, temp);	
 				}
 			}
-			
+			  
 		}
 		
 	}
@@ -427,7 +427,7 @@ public void ordenateTypeOfAnimals() {
 				Club temp = clubs.get(j);
 				clubs.set(j,clubs.get(j+1));
 				clubs.set(j+1,temp);
-			}	
+			}	 
 		}	
 	}	
 }
@@ -565,7 +565,7 @@ public void ordenarClubesPorNumeroDeDueños() {
 			Club temp = clubs.get(j);
 			clubs.set(j,clubs.get(j-1));
 			clubs.set(j-1,temp);
-		}
+		} 
 			
 	} 
 }
@@ -692,9 +692,9 @@ public void ordenarTipoDeMascota(String idClubsito,String idOwner){
 }
 
 //BINARIOS
-public String searchBinariesForNameClub(String nameClub) {
+public String searchBinariesForNameClub(String nameClub) { 
 	String msj = "";
-	
+	String object = "";
 	long a = System.currentTimeMillis();
 	ordenarClubesPorNombre();
 	int inicio = 0;
@@ -704,34 +704,46 @@ public String searchBinariesForNameClub(String nameClub) {
 		int mitad = (inicio+finales)/2;
 		if(clubs.get(mitad).getNameClub().compareTo(nameClub) == 0) {
 			t = true;
+			object = clubs.get(mitad).getIdClub();
+			
 		}else if(clubs.get(mitad).getNameClub().compareTo(nameClub) > 0) {
 			finales = mitad -1;
 		}else {
 			inicio = mitad + 1;
-		}
+		} 
 	}
 	long b = System.currentTimeMillis();
 	
-	long c = System.currentTimeMillis();
+	
+	msj = "Se encontro" + "1." + object +" " + t + "El tiempo binario:" + " " + (b-a);
+	
+	return msj;
+}
+
+public String searchBinariesForNameClubCase1(String nameClub) {
+	String msj = " ";
+	String object = "";
+long c = System.currentTimeMillis();
 	
 	boolean findIt = false;
 	
 	for(int i = 0; i < clubs.size();i++) {
 		if(clubs.get(i).getNameClub().equals(nameClub)) {
 			findIt = true;
+			object += clubs.get(i).getNameClub();
 		}
 	}
 	
 	long z = System.currentTimeMillis();
 	
-	msj = "Se encontro" + "1." + t + "2. "+ findIt+ " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+	msj = "Se encontro" + "1." + object + " " +findIt +" " + "El tiempo binario:" + " " + (z-c);
 	
 	return msj;
 }
 
 public String searchBinariesForId(String idClub) {
 	String msj = "";
-	
+	String object = "";
 	long a = System.currentTimeMillis();
 	ordenarClubesPorId();
 	int inicio = 0;
@@ -741,6 +753,7 @@ public String searchBinariesForId(String idClub) {
 		int mitad = (inicio+finales)/2;
 		if(clubs.get(mitad).getNameClub().compareTo(idClub) == 0) {
 			t = true;
+			object = clubs.get(mitad).getIdClub();
 		}else if(clubs.get(mitad).getNameClub().compareTo(idClub) > 0) {
 			finales = mitad -1;
 		}else {
@@ -749,26 +762,37 @@ public String searchBinariesForId(String idClub) {
 	}
 	long b = System.currentTimeMillis();
 	
-	long c = System.currentTimeMillis();
+	msj = "Se encontro" + "1. "+object + " "+ t + " " + "El tiempo binario de uno:" + " " + (b-a);
+	
+	return msj; 
+}
+
+public String searchBinariesForIdCase1(String idClub) {
+	String msj = "";
+	String object = " ";
+	
+long c = System.currentTimeMillis();
 	
 	boolean findIt = false;
 	
 	for(int i = 0; i < clubs.size();i++) {
 		if(clubs.get(i).getIdClub().equals(idClub)) {
 			findIt = true;
+			object = clubs.get(i).getIdClub();
 		}
 	}
 	
 	long z = System.currentTimeMillis();
 	
-	msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+	msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 	
-	return msj; 
+	return msj;
+	
 }
 
 public String searchBinariesForDate(String dates) {
 	String msj = "";
-	
+	String object = " ";
 	long a = System.currentTimeMillis();
 	ordenarFechas();
 	int inicio = 0;
@@ -778,6 +802,7 @@ public String searchBinariesForDate(String dates) {
 		int mitad = (inicio+finales)/2;
 		if(clubs.get(mitad).getCreationDate().compareTo(dates) == 0) {
 			t = true;
+			object = clubs.get(mitad).getCreationDate();
 		}else if(clubs.get(mitad).getCreationDate().compareTo(dates) > 0) {
 			finales = mitad -1;
 		}else {
@@ -786,26 +811,35 @@ public String searchBinariesForDate(String dates) {
 	}
 	long b = System.currentTimeMillis();
 	
-	long c = System.currentTimeMillis();
+	msj = "Se encontro" + "1. "+ object + " " + t + " " + "El tiempo binario de uno:" + " " + (b-a);
+	
+	return msj; 
+}
+
+public String searchBinariesForDateCase1(String dates) {
+	String msj = " ";
+	String object = " ";
+long c = System.currentTimeMillis();
 	
 	boolean findIt = false;
 	
 	for(int i = 0; i < clubs.size();i++) {
 		if(clubs.get(i).getCreationDate().equals(dates)) {
 			findIt = true;
+			object += clubs.get(i).getCreationDate();
 		}
 	}
 	
 	long z = System.currentTimeMillis();
 	
-	msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+	msj = "Se encontro" + "1. "+ object +" "+ findIt +" " + "El tiempo binario del otro:" + (z-c);
 	
-	return msj; 
+	return msj;
 }
 
 public String searchBinariesForTypeOfAnimals(String typeOfAnimals) {
 	String msj = "";
-	
+	String object = "";
 	long a = System.currentTimeMillis();
 	ordenateTypeOfAnimals();
 	int inicio = 0;
@@ -823,6 +857,14 @@ public String searchBinariesForTypeOfAnimals(String typeOfAnimals) {
 	}
 	long b = System.currentTimeMillis();
 	
+	msj = "Se encontro" + "1. " + object + " " + t + " " + "El tiempo binario de uno:" + " " + (b-a);
+	
+	return msj; 
+}
+
+public String searchBinariesForTypeOfAnimalsCase1(String typeOfAnimals) {
+	String msj = "";
+	String object = "";
 	long c = System.currentTimeMillis();
 	
 	boolean findIt = false;
@@ -830,12 +872,13 @@ public String searchBinariesForTypeOfAnimals(String typeOfAnimals) {
 	for(int i = 0; i < clubs.size();i++) {
 		if(clubs.get(i).getTypeOfAnimals().equals(typeOfAnimals)) {
 			findIt = true;
+			object = clubs.get(i).getTypeOfAnimals();
 		}
 	}
 	
 	long z = System.currentTimeMillis();
 	
-	msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+	msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 	
 	return msj; 
 }
@@ -866,6 +909,8 @@ public String getBinaryOfBornDay1(String idClub,String creationDate ) {
 		for(int i = 0; i < clubs.size();i++) {
 			if(clubs.get(i).getCreationDate().equals(idClub)) {
 				msj += clubs.get(i).searchBinariesForBornDay(creationDate);
+				msj += "---------------------------------------------------";
+				msj += clubs.get(i).searchBinariesForBornDayCase1(creationDate);
 				t = true;
 			}
 		}

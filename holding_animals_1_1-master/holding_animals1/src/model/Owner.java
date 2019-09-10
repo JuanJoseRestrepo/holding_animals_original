@@ -264,8 +264,8 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	}
 	
 	public String searchBinariesForIdPet(String idPet) {
-String msj = "";
-		
+		String msj = "";
+		String object = "";
 		long a = System.currentTimeMillis();
 		ordenarPorIdPet();
 		int inicio = 0;
@@ -274,6 +274,7 @@ String msj = "";
 		while(inicio <= finales && !t) {
 			int mitad = (inicio+finales)/2;
 			if(pets.get(mitad).getIdPet().compareTo(idPet) == 0) {
+				object = pets.get(mitad).getIdPet();
 				t = true;
 			}else if(pets.get(mitad).getIdPet().compareTo(idPet) > 0) {
 				finales = mitad -1;
@@ -283,26 +284,38 @@ String msj = "";
 		}
 		long b = System.currentTimeMillis();
 		
+		msj = "Se encontro" + "1. " + t +"2." + object + " " + "El tiempo binario de uno:" + " " + (b-a);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesForIdPetCase1(String idPet) {
+		String msj = "";
+		String object = "";
+		
+		
 		long c = System.currentTimeMillis();
 		
 		boolean findIt = false;
 		
 		for(int i = 0; i < pets.size();i++) {
 			if(pets.get(i).getIdPet().equals(idPet)) {
+				object = pets.get(i).getIdPet();
 				findIt = true;
 			}
 		}
 		
 		long z = System.currentTimeMillis();
 		
-		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 		
 		return msj; 
 	}
 	
+	
 	public String searchBinariesForNamePet(String namePet) {
 		String msj = "";
-		
+		String object = "";
 		long a = System.currentTimeMillis();
 		ordenarPorIdPet();
 		int inicio = 0;
@@ -312,6 +325,7 @@ String msj = "";
 			int mitad = (inicio+finales)/2;
 			if(pets.get(mitad).getPetName().compareTo(namePet) == 0) {
 				t = true;
+				object = pets.get(mitad).getPetName();
 			}else if(pets.get(mitad).getPetName().compareTo(namePet) > 0) {
 				finales = mitad -1;
 			}else {
@@ -320,26 +334,37 @@ String msj = "";
 		}
 		long b = System.currentTimeMillis();
 		
+		msj = "Se encontro" + "1. " + t +"2." + object + " " + "El tiempo binario de uno:" + " " + (b-a);
+		
+		return msj; 
+	} 
+	
+	public String searchBinariesForNamePetCase1(String namePet) {
+		String msj = "";
+		String object = "";
+			
 		long c = System.currentTimeMillis();
 		
 		boolean findIt = false;
 		
 		for(int i = 0; i < pets.size();i++) {
 			if(pets.get(i).getPetName().equals(namePet)) {
+				object = pets.get(i).getPetName();
 				findIt = true;
 			}
 		}
 		
 		long z = System.currentTimeMillis();
 		
-		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 		
 		return msj; 
+		
 	}
 	
 	public String searchBinariesGender(String gender) {
 		String msj = "";
-		
+		String object = "";
 		long a = System.currentTimeMillis();
 		ordenarPorIdPet();
 		int inicio = 0;
@@ -348,6 +373,7 @@ String msj = "";
 		while(inicio <= finales && !t) {
 			int mitad = (inicio+finales)/2;
 			if(pets.get(mitad).getGender().compareTo(gender) == 0) {
+				object = pets.get(mitad).getGender();
 				t = true;
 			}else if(pets.get(mitad).getGender().compareTo(gender) > 0) {
 				finales = mitad -1;
@@ -357,26 +383,36 @@ String msj = "";
 		}
 		long b = System.currentTimeMillis();
 		
+		msj = "Se encontro" + "1. " + t +"2." + object + " " + "El tiempo binario de uno:" + " " + (b-a);
+		
+		return msj; 
+	}
+	
+	public String searchBinariesGenderCase1(String gender) {
+		String msj = "";
+		String object = "";
+		
 		long c = System.currentTimeMillis();
 		
 		boolean findIt = false;
 		
 		for(int i = 0; i < pets.size();i++) {
 			if(pets.get(i).getGender().equals(gender)) {
+				object = pets.get(i).getGender();
 				findIt = true;
 			}
 		}
 		
 		long z = System.currentTimeMillis();
 		
-		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 		
-		return msj; 
+		return msj;
 	}
 	
 	public String searchBinaryTypeOfPet(String typeOfPet) {
 		String msj = "";
-		
+		String object = "";
 		long a = System.currentTimeMillis();
 		ordenarPorIdPet();
 		int inicio = 0;
@@ -385,6 +421,7 @@ String msj = "";
 		while(inicio <= finales && !t) {
 			int mitad = (inicio+finales)/2;
 			if(pets.get(mitad).getTypeOfPet().compareTo(typeOfPet) == 0) {
+				object = pets.get(mitad).getTypeOfPet();
 				t = true;
 			}else if(pets.get(mitad).getTypeOfPet().compareTo(typeOfPet) > 0) {
 				finales = mitad -1;
@@ -394,27 +431,37 @@ String msj = "";
 		}
 		long b = System.currentTimeMillis();
 		
+		msj = "Se encontro" + "1. " + t +"2." + object + " " + "El tiempo binario de uno:" + " " + (b-a);
+		
+		return msj; 
+	}
+	
+	public String searchBinaryTypeOfPetCase1(String typeOfPet) {
+		String msj =  "";
+		String object = "";
+		
 		long c = System.currentTimeMillis();
 		
 		boolean findIt = false;
 		
 		for(int i = 0; i < pets.size();i++) {
 			if(pets.get(i).getTypeOfPet().equals(typeOfPet)) {
+				object = pets.get(i).getTypeOfPet();
 				findIt = true;
 			}
 		}
 		
 		long z = System.currentTimeMillis();
 		
-		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 		
 		return msj; 
 	}
 	
 	public String searchBinariesBornDay(String bornDay) {
 		
-String msj = "";
-		
+		String msj = "";
+		String object = "";
 		long a = System.currentTimeMillis();
 		ordenarPorIdPet();
 		int inicio = 0;
@@ -423,6 +470,7 @@ String msj = "";
 		while(inicio <= finales && !t) {
 			int mitad = (inicio+finales)/2;
 			if(pets.get(mitad).getBornPetDay().compareTo(bornDay) == 0) {
+				object = pets.get(mitad).getBornPetDay();
 				t = true;
 			}else if(pets.get(mitad).getBornPetDay().compareTo(bornDay) > 0) {
 				finales = mitad -1;
@@ -432,22 +480,32 @@ String msj = "";
 		}
 		long b = System.currentTimeMillis();
 		
+		msj = "Se encontro" + "1. " + t +"2." + object + " " + "El tiempo binario de uno:" + " " + (b-a);
+		
+		return msj; 
+		
+	}
+	
+	public String searchBinariesBornDayCase1(String bornDay) {
+		String msj = "";
+		String object = "";
+		
 		long c = System.currentTimeMillis();
 		
 		boolean findIt = false;
 		
 		for(int i = 0; i < pets.size();i++) {
 			if(pets.get(i).getBornPetDay().equals(bornDay)) {
+				object = pets.get(i).getBornPetDay();
 				findIt = true;
 			}
 		}
 		
 		long z = System.currentTimeMillis();
 		
-		msj = "Se encontro" + "1. " + t +"2." + findIt + " " + "El tiempo binario de uno:" + " " + (b-a) + " " + "El tiempo binario del otro:" + (z-c);
+		msj = "Se encontro" + "1. " + object +"2." + findIt + " " + "El tiempo binario del otro:" + (z-c);
 		
 		return msj; 
-		
 	}
 	
 }

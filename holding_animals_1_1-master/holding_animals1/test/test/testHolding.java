@@ -43,28 +43,6 @@ class testHolding {
 				
 		}
 	
-	private void setUpEscenario1() {
-		hol = new Holding("asdad");
-		Club c = new Club("023131312","Coca Cola","2080/09/10","Lobo");
-		Club d = new Club("222223321","IssacCompany","2030/04/16","Obo");
-		Club e = new Club("444214132","NegroCompany","2014/08/01","Wick");
-		Club t = new Club("332131313","Isabella_Holding","2004/09/12","Kanguro");
-		Club y = new Club("112313132","KevinClub","2002/07/14","Vampiro");
-		Club x = new Club("999854213","LegionLenovo","2000/09/13","Jhon Wick");
-		Club u = new Club("203215645","RazerCompany","2019/12/03","Portil");
-		Club i = new Club("632112351","JhonJairoS.A","2013/04/12","Buhoo");
-		 
-		clubsitos.add(c);
-		clubsitos.add(d);
-		clubsitos.add(e);
-		clubsitos.add(t);
-		clubsitos.add(y);
-		clubsitos.add(x);
-		clubsitos.add(u);
-		clubsitos.add(i);
-		hol.setClubs(clubsitos);
-	}
-	
 	private void setupEscenario2() {
 		hol = new Holding("asdad");
 		Club c = new Club("023131312","Coca Cola","2080/09/10","Lobo");
@@ -99,29 +77,7 @@ class testHolding {
 		hol.getClubs().get(0).setOwners(own);
 		hol.getClubs().get(0).getOwners().get(0).setPets(pets1);
 	}
-	
-	private void setupEscenario3() {
-		hol = new Holding("asdaa");
-		ArrayList<Club> tmp = new ArrayList<Club>();
-		Club c = new Club("023131312","Coca Cola","2080/09/10","Lobo");
-		Club d = new Club("222223321","IssacCompany","2030/04/16","Obo");
-		Club e = new Club("444214132","NegroCompany","2014/08/01","Wick");
-		Club t = new Club("332131313","Isabella_Holding","2004/09/12","Kanguro");
-		Club y = new Club("112313132","KevinClub","2002/07/14","Vampiro");
-		Club x = new Club("999854213","LegionLenovo","2000/09/13","Jhon Wick");
-		Club u = new Club("203215645","RazerCompany","2019/12/03","Portil");
-		Club i = new Club("632112351","JhonJairoS.A","2013/04/12","Buhoo");
-		tmp.add(c);
-		tmp.add(d);
-		tmp.add(e);
-		tmp.add(t);
-		tmp.add(y);
-		tmp.add(x);
-		tmp.add(u);
-		tmp.add(i);
-		hol.setClubs(tmp);
-	}
-	
+		
 	@Test
 	void ordenarClubsPorIdTest() {
 		setupEscenario();
@@ -207,6 +163,108 @@ class testHolding {
 		assertEquals(clubsitos.get((clubsitos.size()-1)).toString(),tmp.get((tmp.size()-1)).toString());
 	}
 	
+	@Test
+	void testOrdenarFechas() {
+		setupEscenario();
+		hol.ordenarFechas();
+		hol = new Holding("asdaaaa");
+		ArrayList<Club> tmp = new ArrayList<Club>();
+		Club c = new Club("023131312","Coca Cola","2080/09/10","Lobo");
+		Club d = new Club("222223321","IssacCompany","2030/04/16","Obo");
+		Club e = new Club("444214132","NegroCompany","2014/08/01","Wick");
+		Club t = new Club("332131313","Isabella_Holding","2004/09/12","Kanguro");
+		Club y = new Club("112313132","KevinClub","2002/07/14","Vampiro");
+		Club x = new Club("999854213","LegionLenovo","2000/09/13","Jhon Wick");
+		Club u = new Club("203215645","RazerCompany","2019/12/03","Portil");
+		Club i = new Club("632112351","JhonJairoS.A","2013/04/12","Buhoo");
+		tmp.add(c);
+		tmp.add(d);
+		tmp.add(e);
+		tmp.add(t);
+		tmp.add(y); 
+		tmp.add(x);
+		tmp.add(u);
+		tmp.add(i); 
+		hol.setClubs(tmp);
+		hol.ordenarFechas();	 
+		
+		assertFalse(clubsitos.get((clubsitos.size()-1)).toString() == tmp.get((tmp.size()-1)).toString(),"No son iguales");
+		
+	}
+	
+	@Test
+	void testOrdenateAnimals() {
+		setupEscenario();
+		hol.ordenateTypeOfAnimals();
+		hol = new Holding("asdaaaa");
+		ArrayList<Club> tmp = new ArrayList<Club>();
+		Club c = new Club("023131312","Coca Cola","2080/09/10","Lobo");
+		Club d = new Club("222223321","IssacCompany","2030/04/16","Obo");
+		Club e = new Club("444214132","NegroCompany","2014/08/01","Wick");
+		Club t = new Club("332131313","Isabella_Holding","2004/09/12","Kanguro");
+		Club y = new Club("112313132","KevinClub","2002/07/14","Vampiro");
+		Club x = new Club("999854213","LegionLenovo","2000/09/13","Jhon Wick");
+		Club u = new Club("203215645","RazerCompany","2019/12/03","Portil");
+		Club i = new Club("632112351","JhonJairoS.A","2013/04/12","Buhoo");
+		tmp.add(c);
+		tmp.add(d);
+		tmp.add(e);
+		tmp.add(t);
+		tmp.add(y); 
+		tmp.add(x);
+		tmp.add(u);
+		tmp.add(i); 
+		hol.setClubs(tmp);
+		hol.ordenateTypeOfAnimals();
+		
+		assertEquals(clubsitos.get((clubsitos.size()-1)).toString(),tmp.get((clubsitos.size()-1)).toString());
+		
+	} 
+	
+	@Test
+	void testOrdenarPorNumeroDeDueños() {
+		setupEscenario();
+		hol.ordenarClubesPorNumeroDeDueños();
+		hol = new Holding("asdaaaa");
+		ArrayList<Club> tmp = new ArrayList<Club>();
+		Club c = new Club("023131312","Coca Cola","2080/09/10","Lobo");
+		Club d = new Club("222223321","IssacCompany","2030/04/16","Obo");
+		Club e = new Club("444214132","NegroCompany","2014/08/01","Wick");
+		Club t = new Club("332131313","Isabella_Holding","2004/09/12","Kanguro");
+		Club y = new Club("112313132","KevinClub","2002/07/14","Vampiro");
+		Club x = new Club("999854213","LegionLenovo","2000/09/13","Jhon Wick");
+		Club u = new Club("203215645","RazerCompany","2019/12/03","Portil");
+		Club i = new Club("632112351","JhonJairoS.A","2013/04/12","Buhoo");
+		tmp.add(c);
+		tmp.add(d);
+		tmp.add(e);
+		tmp.add(t);
+		tmp.add(y); 
+		tmp.add(x);
+		tmp.add(u);
+		tmp.add(i); 
+		hol.setClubs(tmp);
+		hol.ordenarClubesPorNumeroDeDueños();
+		
+		assertEquals(clubsitos.get((clubsitos.size()-1)).toString(),tmp.get((clubsitos.size()-1)).toString());
+
+	} 
+	
+	@Test
+	void testBinarioForName() {
+		setupEscenario();
+		hol.ordenarClubesPorNombre();
+		String msj = hol.searchBinariesForDate("KveinClub");
+		assertEquals(clubsitos.get(4).getNameClub(), msj);
+	}
+	
+	@Test
+	void testBinaryForId() {
+		setupEscenario();
+		hol.ordenarClubesPorId();
+		String msj = hol.searchBinariesForId("222223321");
+		assertEquals(clubsitos.get(4).getIdClub(), msj);
+	}
 	
 
 }
