@@ -143,7 +143,7 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	
 	public int compareToBornDay(Owner o1) {
 		
-		return formatTheDateOfThis(bornDay).compareTo(formatTheDateOfThis(o1.getBornDay()));
+		return bornDay.compareTo(o1.getBornDay());
 		
 	}
 	

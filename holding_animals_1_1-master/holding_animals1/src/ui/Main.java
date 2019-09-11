@@ -576,8 +576,26 @@ public class Main {
 			}else if(inputUser == 10) {
 				int usuario1 = 0;
 				
-				System.out.println("1.Nombre club");
-				
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("1.Mostrar por nombre de club");
+				System.out.println("2.Mostrar por id club");
+				System.out.println("3.Mostrar fecha de club");
+				System.out.println("4.Mostrar tipo de animal club");
+				System.out.println("5.Mostrar fecha animalito");
+				System.out.println("6.Mostrar fecha de Owner");
+				System.out.println("7.Mostrar id de owner");
+				System.out.println("8.Mostrar primer nombre dueño");
+				System.out.println("9.Mostrar segundo nombre dueño");
+				System.out.println("10.Mostrar tipo de animal club");
+				System.out.println("11.Mostrar id pet");
+				System.out.println("12.Mostrar nombre animalito");
+				System.out.println("13.Mostrar genero animalito");
+				System.out.println("14.Mostrar tipo de animal de la mascota");
+				System.out.println("15.Salir");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+
 				while(usuario1 != 15) {
 					usuario1 = reader.nextInt();
 					reader.nextLine();
@@ -600,34 +618,47 @@ public class Main {
 						String name2 = reader.nextLine();
 						
 						System.out.println(system.searchBinariesForId(name2));
+						System.out.println("-------------------------------------");
+						System.out.println(system.searchBinariesForIdCase1(name2));
 						
 					}else if(usuario1 == 3) { 
 						System.out.println("Por favor digite la fecha del club");
 						String name3 = reader.nextLine();
 						
 						System.out.println(system.searchBinariesForDate(name3));
+						System.out.println("....................................");
+						System.out.println(system.searchBinariesForDateCase1(name3));
 						
 					}else if(usuario1 == 4) {
 						System.out.println("Por favor digite el tipo de animal del club");
 						String name4 = reader.nextLine();
 						
-						System.out.println(system.searchBinariesForTypeOfAnimals(name4)); 
+						System.out.println(system.searchBinariesForTypeOfAnimals(name4));
+						System.out.println("-----------------------------------------------");
+						System.out.println(system.searchBinariesForTypeOfAnimalsCase1(name4));
 						
 					}else if(usuario1 == 5) {
+						System.out.println("Digite el id del club");
+						String name28 = reader.nextLine();
 						
-						System.out.println("Por favor digite el tipo de animal del club");
-						String name5 = reader.nextLine();
+						System.out.println("Digite el id del owner");
+						String name29 = reader.nextLine();
 						
-						System.out.println(system.searchBinariesForTypeOfAnimals(name5));
+						System.out.println("Digite la fecha del animalito");
+						String name30 = reader.nextLine();
+						
+						System.out.println(system.getBinaryOfThePetBornDay(name28,name29,name30));
 						
 					}else if(usuario1 == 6) {
-						System.out.println("Por favor digite la fecha de creacion");
-						String name6 = reader.nextLine();
 						
 						System.out.println("Por favor digite el id del Club");
 						String name7 = reader.nextLine();
 						
-						System.out.println(system.getBinaryOfBornDay1(name6, name7));
+						System.out.println("Por favor digite la fecha de creacion (Cumpleaños Owner)");
+						String name6 = reader.nextLine();
+						
+						//
+						System.out.println(system.getBinaryOfBornDay1(name7, name6));
 						
 					}else if(usuario1 == 7) {
 						System.out.println("Por favor digite el id del club");
@@ -637,19 +668,85 @@ public class Main {
 						String name9 = reader.nextLine();
 						
 						System.out.println(system.getBinaryOfIdOwner2(name8, name9));
+						
 					}else if(usuario1 == 8) {
 						
+						System.out.println("Por favor digite el id del Club");
+						String name10 = reader.nextLine();
+						
+						System.out.println("Por favor digite el primer nombre del dueño");
+						String name11 = reader.nextLine();
+						
+						System.out.println(system.getBinaryOfOwnerNames3(name10, name11));
+						
 					}else if(usuario1 == 9) {
+						System.out.println("Por favor digite el idDelClub");
+						String name12 = reader.nextLine();
+						
+						System.out.println("Por favor digite el segundoNombre del dueño");
+						String name13 = reader.nextLine();
+						
+						System.out.println(system.getBinaryOfOwnersSecondNames4(name12,name13));
 						
 					}else if(usuario1 == 10) {
 						
+						System.out.println("Por favor digite el idDelClub");
+						String name14 = reader.nextLine();
+						
+						System.out.println("Por favor digite digite el tipo de animal");
+						String name15 = reader.nextLine();
+						
+						System.out.println(system.getBinaryOfTypeOfAnimalsPrefer5(name14,name15));
+						
 					}else if(usuario1 == 11) {
+						System.out.println("Digite el id del club");
+						String name16 = reader.nextLine();
+						
+						System.out.println("Digite el id del owner");
+						String name17 = reader.nextLine();
+						
+						System.out.println("Digite el id del pet");
+						String name18 = reader.nextLine();
+						
+						System.out.println(system.getBinaryOfIdOwnerPet(name16,name17,name18));
 						
 					}else if(usuario1 == 12) {
+						System.out.println("Digite el id del club");
+						String name19 = reader.nextLine();
+						
+						System.out.println("Digite el id del owner");
+						String name20 = reader.nextLine();
+						
+						System.out.println("Digite el nombre del animalito");
+						String name21 = reader.nextLine();
+						
+						System.out.println(system.getBinaryOfOwnerNamesPet(name19,name20,name21));
+						
 						
 					}else if(usuario1 == 13) {
+						System.out.println("Digite el id del club");
+						String name22 = reader.nextLine();
+						
+						System.out.println("Digite el id del owner");
+						String name23 = reader.nextLine();
+						
+						System.out.println("Digite el genero del animalito");
+						String name24 = reader.nextLine();
+						
+						System.out.println(system.getBinaryGenderPets(name22,name23,name24));
+						
 						
 					}else if(usuario1 == 14) {
+						System.out.println("Digite el id del club");
+						String name25 = reader.nextLine();
+						
+						System.out.println("Digite el id del owner");
+						String name26 = reader.nextLine();
+						
+						System.out.println("Digite el tipo de animal preferido");
+						String name27 = reader.nextLine();
+						
+						System.out.println(system.getBinaryOfTypeOfAnimalsPrefer(name25,name26,name27));
 						
 					}else {
 						System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");

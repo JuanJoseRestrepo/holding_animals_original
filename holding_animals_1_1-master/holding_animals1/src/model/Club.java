@@ -18,6 +18,7 @@ import java.util.*;
 import exceptions.errorIdClubNotFound;
 import exceptions.errorIdOwner;
 import exceptions.errorNameNotFound;
+import exceptions.errorNameOwnerNotFound;
 
 public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 
@@ -34,7 +35,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	private String nameClub;
 	private String creationDate;
 	private String typeOfAnimals;
-	private ordenarPorFecha fechas;
+
 	
 	/**
 	 * 
@@ -156,20 +157,23 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	 * 
 	 */
 	public void delatedOwner(String nombredelMka,String apellidoOwner) {
+		boolean t = false;
 		
 		try {
-		for(int i = 0; i < owners.size();i++) {
+		for(int i = 0; i < owners.size() && !t;i++) {
 			
 			if((owners.get(i).getOwnerNames().equals(nombredelMka)) && (owners.get(i).getOwnerSecondNames().equals(apellidoOwner))){
 				owners.remove(owners.get(i));
-			}else {
-				throw new errorNameNotFound("No valido el id");
+				t = true;
 			}
-			
 		}
-	}catch(errorNameNotFound e) {
-		System.out.println("No valido el nombre");
-		e.getCause();
+		
+		if(t == false) {
+			throw new errorNameOwnerNotFound("No se encontro");
+		}
+	}catch (errorNameOwnerNotFound e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
 }
 	
@@ -177,19 +181,23 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	 * 
 	 */
 	public void delatedOwnerNumber(String idDelMka) {
-		
+		boolean t = false;
 		try {
-		for(int i = 0; i < owners.size();i++) {
+		for(int i = 0; i < owners.size() && !t;i++) {
 			
 			if(owners.get(i).getIdOwner().equals(idDelMka)){
 				owners.remove(owners.get(i));
-			}else {
-				throw new errorIdClubNotFound("No valido el id");
+				t = true;
 			}
-			
 		}
-	}catch(errorIdClubNotFound e) {
-		e.getCause();
+		
+		if(t == false) {
+				throw new errorIdOwner("No valido el id");
+		}
+		
+	}catch (errorIdOwner e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
 		
 	}
@@ -201,7 +209,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		boolean t = false;
 		
 		try {
-		for(int i = 0; i < owners.size();i++) {
+		for(int i = 0; i < owners.size() && !t;i++) {
 			
 			if(owners.get(i).getIdOwner().equals(idOwner)) {
 				owners.get(i).deletePetName(namePet);
@@ -223,7 +231,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		boolean t = false;
 		
 		try {
-		for(int i = 0; i < owners.size();i++) {
+		for(int i = 0; i < owners.size() && !t;i++) {
 			
 			if(owners.get(i).getIdOwner().equals(idOwner)) {
 				owners.get(i).deletePet(idPet);
@@ -402,7 +410,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		 
 		 ownersitos = (ArrayList<Owner>) obs.readObject();
 		 setOwners(ownersitos);
-		 
+		 obs.close();
 	 }catch(IOException e) {
 		 e.getCause();
 	 } catch (ClassNotFoundException e) {
@@ -445,9 +453,10 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		boolean t = false;
 		
 		try {
-		for(int j = 0; j < owners.size();j++) {
+		for(int j = 0; j < owners.size() && !t;j++) {
 			if(owners.get(j).getIdOwner().equals(idOwner)) {
 			owners.get(j).ordenarPorNombres();
+			t = true;
 			}
 		}
 		
@@ -464,7 +473,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		boolean t = false;
 		
 		try {
-		for(int j = 0; j < owners.size();j++) {
+		for(int j = 0; j < owners.size() && !t ;j++) {
 			if(owners.get(j).getIdOwner().equals(idOwner)){
 			owners.get(j).ordenarPorIdPet();
 			t = true;
@@ -483,7 +492,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	public void getMethodsGender(String idOwner) {
 		boolean t = false;
 		try {
-		for(int i = 0; i < owners.size();i++) {
+		for(int i = 0; i < owners.size() && !t;i++) {
 			if(owners.get(i).getIdOwner().equals(idOwner)) {
 			owners.get(i).ordenarPorGenero();
 			t = true;
@@ -502,7 +511,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	public void getMethodsPreferAnimal(String idOwner) {
 		boolean t = false;
 		try {
-		for(int i = 0; i < owners.size();i++) {
+		for(int i = 0; i < owners.size() && !t;i++) {
 			if(owners.get(i).getIdOwner().equals(idOwner)) {
 			owners.get(i).ordenarPorTipoDeAnimalElPet();
 			t = true;
@@ -521,9 +530,10 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		
 		boolean t = false;
 		try {
-		for(int j = 0; j < owners.size();j++){
+		for(int j = 0; j < owners.size() && !t;j++){
 			if(owners.get(j).getIdOwner().equals(idOwner)){
 			owners.get(j).ordenarPorFecha();
+			t = true;
 		 }
 	}
 		if(t == false) {
@@ -570,7 +580,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		
 		boolean findIt = false;
 		
-		for(int i = 0; i < owners.size();i++) {
+		for(int i = 0; i < owners.size() && !findIt;i++) {
 			if(owners.get(i).getIdOwner().equals(idOwner)) {
 				findIt = true;
 				object += owners.get(i).getIdOwner();
@@ -622,7 +632,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		
 		boolean findIt = false;
 		
-		for(int i = 0; i < owners.size();i++) {
+		for(int i = 0; i < owners.size() && !findIt;i++) {
 			if(owners.get(i).getOwnerNames().equals(ownerNames)) {
 				findIt = true;
 				object = owners.get(i).getOwnerNames();
@@ -672,7 +682,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		
 		boolean findIt = false;
 		
-		for(int i = 0; i < owners.size();i++) {
+		for(int i = 0; i < owners.size() && !findIt;i++) {
 			if(owners.get(i).getOwnerSecondNames().equals(secondNames)) {
 				findIt = true;
 				object = owners.get(i).getOwnerSecondNames();
@@ -722,7 +732,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		
 		boolean findIt = false;
 		
-		for(int i = 0; i < owners.size();i++) {
+		for(int i = 0; i < owners.size() && !findIt;i++) {
 			if(owners.get(i).getTypeOfAnimalsPrefer().equals(typeOfAnimals1)) {
 				object = owners.get(i).getTypeOfAnimalsPrefer();
 				findIt = true;
@@ -771,7 +781,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		
 		boolean findIt = false;
 		
-		for(int i = 0; i < owners.size();i++) {
+		for(int i = 0; i < owners.size() && !findIt;i++) {
 			if(owners.get(i).getBornDay().equals(bornDay)) {
 				findIt = true;
 				object = owners.get(i).getBornDay();
@@ -784,6 +794,95 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 		
 		return msj; 
 		
+	}
+	//BinarioPets
+	public String getMethodsPetsIdPets(String idOwner,String idPet) {
+		String msj = "";
+		boolean t = false;
+		try {
+		for(int i = 0; i < owners.size() && !t;i++) {
+			if(owners.get(i).getIdOwner().equals(idOwner)) {
+				msj = owners.get(i).searchBinariesForIdPetCase1(idPet);
+				msj = owners.get(i).searchBinariesForIdPet(idPet);
+				t = true;		
+			}
+		}
+		
+		if(t == false) {
+			throw new errorIdOwner("No se encontro la id");
+		}
+		
+		}catch(errorIdOwner e) {
+			e.getMessage();
+		}
+		
+		return msj;
+	}
+	
+	public String getMethodsPetsName(String idOwner,String petName) {
+		String msj = "";
+		boolean t = false;
+		for(int i = 0; i < owners.size() && !t;i++) {
+			if(owners.get(i).getIdOwner().equals(idOwner)) {
+				msj = owners.get(i).searchBinariesForNamePet(petName);
+				msj = owners.get(i).searchBinariesForNamePetCase1(petName);
+				t = true;
+			}
+		}
+		
+		return msj;
+	}
+	
+	public String getMethodsGender(String idOwner,String genderPet) {
+		String msj = "";
+		boolean t = false;
+		for(int i = 0; i < owners.size() && !t;i++) {
+			if(owners.get(i).getIdOwner().equals(idOwner)) {
+				msj = owners.get(i).searchBinariesGender(genderPet);
+				msj = owners.get(i).searchBinariesGenderCase1(genderPet); 
+				t = true;
+			}
+		}
+		
+		return msj;
+	}
+	
+	public String getMethodsAnimalPreferPet(String idOwner,String typeOfAnimalsPrefer) {
+		String msj = "";
+		boolean t = false;
+		try {
+		for(int i = 0; i < owners.size() && !t;i++) {
+			if(owners.get(i).getIdOwner().equals(idOwner)) {
+				msj = owners.get(i).searchBinaryTypeOfPet(typeOfAnimalsPrefer);
+				msj = owners.get(i).searchBinaryTypeOfPetCase1(typeOfAnimalsPrefer);
+				t= true;
+			}
+		}
+		
+		if(t == false) {
+			throw new errorIdOwner("No se encontro");
+		}
+		
+		}catch(errorIdOwner e) {
+			e.getCause();
+		}
+		
+		return msj;
+	}
+	
+	public String getMethodsBinaryBornPet(String idOwner,String date) {
+		String msj = " ";
+		boolean t = false;
+		
+		for(int i = 0; i < owners.size() && !t;i++) {
+			if(owners.get(i).getIdOwner().equals(idOwner)) {
+				msj = owners.get(i).searchBinariesBornDay(date);
+				msj = owners.get(i).searchBinariesBornDayCase1(date);
+				t = true;
+			}
+		}
+		
+		return msj;
 	}
 			
 }//finalDeLaClase
