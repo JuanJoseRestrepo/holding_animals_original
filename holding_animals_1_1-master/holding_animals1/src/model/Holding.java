@@ -369,7 +369,7 @@ public void loadOwner(){
 	for(int i = 0; i < clubs.size();i++) {
 		int j = 0;
 		String msj = br.readLine();
-		while((msj) != null && j < 100000) {
+		while((msj) != null && j < 100) {
 			String[] b = msj.split(",");
 			clubs.get(i).addOwners(b[0],b[1],b[2],b[3],b[4]);
 			j++;
@@ -400,15 +400,14 @@ public void loadPet(){
 	for(Club clubsitos:clubs) {
 		for(Owner owner: clubsitos.getOwners()) {
 			int j = 0;
-			while((msj = br.readLine())!= null && j < 1) {
+			while((msj = br.readLine())!= null && j < 2) {
 				String[] b = msj.split(",");
 				owner.addAnimals(b[0],b[1],b[2],b[3],b[4]);
 				j++; 
 				msj = br.readLine();
 			}	
 	}
-
-	}
+}
 	br.close();
 	fi.close();
 	} catch (FileNotFoundException e) {
@@ -974,7 +973,7 @@ public String getBinaryOfBornDay1(String idClub,String creationDate ) {
 	try {
 		
 		for(int i = 0; i < clubs.size() && !t;i++) {
-			if(clubs.get(i).getCreationDate().equals(idClub)) {
+			if(clubs.get(i).getIdClub().equals(idClub)) {
 				msj += clubs.get(i).searchBinariesForBornDay(creationDate);
 				msj += "---------------------------------------------------";
 				msj += clubs.get(i).searchBinariesForBornDayCase1(creationDate);

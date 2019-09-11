@@ -336,7 +336,7 @@ public class Main {
 						userNumber = reader.nextInt();
 						reader.nextLine(); 
 						
-						if(userNumber > 4) {
+						if(userNumber > 7) {
 							throw new errorRank("ada");
 						}
 						
