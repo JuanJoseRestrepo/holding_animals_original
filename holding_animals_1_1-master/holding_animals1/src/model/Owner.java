@@ -31,7 +31,7 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	private String typeOfAnimalsPrefer;
 	private String bornDay;
 	
-	public Owner(String idOwner,String ownerNames,String ownerSecondNames,String typeOfAnimalsPrefer,String bornDay) {
+	public Owner(String idOwner,String ownerNames,String ownerSecondNames,String typeOfAnimalsPrefer,String bornDay) { 
 		this.idOwner = idOwner;
 		this.ownerNames = ownerNames;
 		this.ownerSecondNames = ownerSecondNames;

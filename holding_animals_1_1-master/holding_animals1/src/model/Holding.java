@@ -369,7 +369,7 @@ public void loadOwner(){
 	for(int i = 0; i < clubs.size();i++) {
 		int j = 0;
 		String msj = br.readLine();
-		while((msj) != null && j < 10) {
+		while((msj) != null && j < 100000) {
 			String[] b = msj.split(",");
 			clubs.get(i).addOwners(b[0],b[1],b[2],b[3],b[4]);
 			j++;
@@ -400,7 +400,7 @@ public void loadPet(){
 	for(Club clubsitos:clubs) {
 		for(Owner owner: clubsitos.getOwners()) {
 			int j = 0;
-			while((msj = br.readLine())!= null && j < 4) {
+			while((msj = br.readLine())!= null && j < 1) {
 				String[] b = msj.split(",");
 				owner.addAnimals(b[0],b[1],b[2],b[3],b[4]);
 				j++; 
