@@ -134,7 +134,7 @@ public class Holding implements Serializable{
 				+ "," + clubs.get(i).getCreationDate() + "," + clubs.get(i).getTypeOfAnimals());
 				bfw.newLine();	
 			}
-			bfw.close();
+			bfw.close(); 
 			
 			
 		}catch(IOException e) {

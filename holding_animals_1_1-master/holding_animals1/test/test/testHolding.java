@@ -254,30 +254,45 @@ class testHolding {
 	void testBinarioForName() {
 		setupEscenario();
 		hol.ordenarClubesPorNombre();
-		String msj = hol.searchBinariesForDate("KveinClub");
-		assertEquals(clubsitos.get(4).getNameClub(), msj);
+		String msj = hol.searchBinariesForNameClub("LegionLenovo");
+		assertEquals(hol.searchBinariesForNameClub("LegionLenovo"), msj);
 	}
 	
 	@Test
 	void testBinaryForId() {
 		setupEscenario();
-		
+		hol.ordenarClubesPorId();
+		String msj1 = hol.searchBinariesForId("222223321");
+		setupEscenario2();
+		hol.ordenarClubesPorId();
 		String msj = hol.searchBinariesForId("222223321");
-		assertEquals(clubsitos.get(4).getIdClub(), msj);
+		assertEquals(msj1, msj);
 	} 
 	
 	@Test
 	void testTradicional() {
 		setupEscenario();
+		String msj = hol.searchBinariesForIdCase1("112313132");
+		setupEscenario2();
+		String zi = hol.searchBinariesForIdCase1("112313132");
 		
-		String msj = hol.searchBinariesForIdCase1("222223321");
-		assertEquals(clubsitos.get(4).getIdClub(), msj);
+		assertEquals(zi, msj);
 	}
 	
 	@Test
 	void testTradicional1() {
 		setupEscenario();
-		
+		String msj = hol.searchBinariesForId("LegionLenovo");
+		setupEscenario2();
+		String ji = hol.searchBinariesForId("LegionLenovo");
+		assertEquals(ji,msj);
+	}
+	
+	@Test
+	void testTradicional3() {
+		setupEscenario();
+		String ji = hol.searchBinariesForId("LegionLenovo");
+		assertEquals("Se encontro1.  false El tiempo binario de uno: 0",ji);
 	}
 	
 
