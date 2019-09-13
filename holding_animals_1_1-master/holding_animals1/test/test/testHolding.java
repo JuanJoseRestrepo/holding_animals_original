@@ -15,7 +15,7 @@ import exceptions.errorIdClubNotFound;
 
 class testHolding {
 	private Holding hol;
-	private ArrayList<Club> clubsitos = new ArrayList<Club>();;
+	private ArrayList<Club> clubsitos = new ArrayList<Club>();
 	
 	
 	private void setupEscenario() {

@@ -143,14 +143,14 @@ public class Owner implements Serializable, Comparable<Owner>,Comparator<Owner> 
 	
 	public int compareToBornDay(Owner o1) {
 		
-		return bornDay.compareTo(o1.getBornDay());
+		return formatTheDateOfThis(bornDay).compareTo(formatTheDateOfThis(o1.getBornDay()));
 		
 	}
 	
 	
 	public Date formatTheDateOfThis(String dateOfThis) {
 		Date inicialDate = null;
-		SimpleDateFormat dateOfThis1 = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat dateOfThis1 = new SimpleDateFormat("d/MM/yyyy");
 		
 		try {
 			inicialDate = dateOfThis1.parse(dateOfThis);

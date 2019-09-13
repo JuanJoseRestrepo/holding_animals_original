@@ -400,7 +400,7 @@ public void loadPet(){
 	for(Club clubsitos:clubs) {
 		for(Owner owner: clubsitos.getOwners()) {
 			int j = 0;
-			while((msj = br.readLine())!= null && j < 2) {
+			while((msj = br.readLine())!= null && j < 1) {
 				String[] b = msj.split(",");
 				owner.addAnimals(b[0],b[1],b[2],b[3],b[4]);
 				j++; 

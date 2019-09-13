@@ -108,13 +108,13 @@ public class Pet implements Serializable, Comparable<Pet>,Comparator<Pet>  {
 	
 	public int compareBornDayPet(Pet o1) {
 		
-		return bornPetDay.compareTo(o1.getBornPetDay());
+		return formatTheDateOfThis(bornPetDay).compareTo(formatTheDateOfThis(o1.getBornPetDay()));
 		
 	}
 	
 	public Date formatTheDateOfThis(String dateOfThis) {
 		Date inicialDate = null;
-		SimpleDateFormat dateOfThis1 = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat dateOfThis1 = new SimpleDateFormat("d/MM/yyyy");
 		
 		try {
 			inicialDate = dateOfThis1.parse(dateOfThis);

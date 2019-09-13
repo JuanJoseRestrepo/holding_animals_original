@@ -282,7 +282,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	
 	public int compareOrdenarPorFecha(Club o1) {
 		
-		return creationDate.compareTo(o1.getCreationDate());
+		return formatTheDateOfThis(creationDate).compareTo(formatTheDateOfThis(o1.getCreationDate()));
 		
 	}
 	
@@ -293,7 +293,7 @@ public class Club implements Serializable, Comparable<Club>,Comparator<Club> {
 	
 	public Date formatTheDateOfThis(String dateOfThis) {
 		Date inicialDate = null;
-		SimpleDateFormat dateOfThis1 = new SimpleDateFormat("yyyy/mm/dd");
+		SimpleDateFormat dateOfThis1 = new SimpleDateFormat("d/mm/yyyy");
 		
 		try {
 			inicialDate = dateOfThis1.parse(dateOfThis);
